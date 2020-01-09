@@ -36,7 +36,7 @@ class CA_Mobile_Elements_Admin{
 			// wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.7257d150.js', array(), "1.0.0", true );
 			wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.4", true );
 			// wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.1373dafb.js', array(), "1.0.0", true );
-			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.2dbd78cb.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.4e795bd3.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			// $container = '{"class":"","id":"","layout":"start","gtm":{"category":""},"width":"custom","cw":{"size":320,"unit":"px"}}';
 			// wp_localize_script( "serp-app-new-js",'loaded_data', array() );
