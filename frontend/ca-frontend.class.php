@@ -7,7 +7,7 @@
 
 		function __construct($item){
 			$this->item = $item;
-			$this->component = CA_Header_Bar_Helper::get_component_by_ID($item);
+			$this->component = CA_Mobile_Element::get_component_by_ID($item);
 
 			$this->component_data = json_decode($this->component[0]->content);
 			$this->template = "mobile-footer-navbar";

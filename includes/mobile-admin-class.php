@@ -27,8 +27,8 @@ class NB_Mobile_Elements_Admin{
 	}
 
 	public function create_metaboxes(){
-			add_meta_box( 'ca-marketing-tools', 'Marketing Tools', array($this,'ca_marketing_metabox'), 'post', 'normal', 'high' );
-			add_meta_box( 'ca-marketing-tools', 'Marketing Tools', array($this,'ca_marketing_metabox'), 'page', 'normal', 'high' );
+			add_meta_box( 'ca-marketing-tools', 'Mobile CTA', array($this,'ca_marketing_metabox'), 'post', 'normal', 'high' );
+			add_meta_box( 'ca-marketing-tools', 'Mobile CTA', array($this,'ca_marketing_metabox'), 'page', 'normal', 'high' );
 	}
 
 	public function ca_marketing_metabox(){
@@ -100,7 +100,7 @@ class NB_Mobile_Elements_Admin{
 	}
 
 	public function materialize_font_awesome_selection_modal(){
-		require("libs/icon-list.php");
+		// require("libs/icon-list.php");
 		$icons = json_decode($icon_list) ;
 /*
 		?>

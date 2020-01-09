@@ -25,43 +25,13 @@ class CA_Mobile_Elements_Admin{
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
 			wp_enqueue_style( "new-serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.c2c31243.css', array(),"1.0.0", 'all' );
 			wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.2b8f8b7e.css', array(),"1.0.0", 'all' );
-			// wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.71b1e085.css', array(),"1.0.0", 'all' );
-
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  $_GET["id"] : 0;
-			// wp_enqueue_style( "serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/ver2/css/vendor.min.css', array(),"1.0.4", 'all' );
-
-			// wp_enqueue_script( "serp-vendor", CA_MOBILE_ELEMENTS_ASSETS . '/ver2/js/vendor.min.js', array(), "1.0.4", true );
-			// wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.7257d150.js', array(), "1.0.0", true );
 			wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.4", true );
-			// wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.1373dafb.js', array(), "1.0.0", true );
 			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.4e795bd3.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
-			// $container = '{"class":"","id":"","layout":"start","gtm":{"category":""},"width":"custom","cw":{"size":320,"unit":"px"}}';
-			// wp_localize_script( "serp-app-new-js",'loaded_data', array() );
-			// wp_localize_script( "serp-app-new-js",'container', $container );
-
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
-
-			// require_once("libs/icon-list.php");
-			// $icons = array();
-			// 	$data_icons = (json_decode($icon_list));
-			// 	foreach ($data_icons as $item) {
-			// 		$icons[] = $item->class;
-			// 	}
-
-
-			// 	$icons= json_encode($icons);
-
-			// wp_enqueue_script( "serp-data-script", CA_MOBILE_ELEMENTS_ASSETS . '/ver2/js/script.js', array(), "1.0.0", true );
-			// wp_enqueue_script( "app-script", CA_MOBILE_ELEMENTS_ASSETS . '/ver2/js/app.js', array(), "1.0.0", true );
-
-			// global $serpwars_conversion;
-			// $serpwars_conversion = CA_Header_Bar_Helper::get_item($_GET['id']);
-			// $data_content	= $serpwars_conversion->content;			
-
-			// wp_localize_script( "app-script",'serwars_conversion_data', $data_content );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
 			wp_enqueue_style( "new-serp-listings", CA_MOBILE_ELEMENTS_ASSETS. '/css/listings.css', array(),"1.0.0", 'all' );
 			wp_enqueue_script( "new-serp-listings", CA_MOBILE_ELEMENTS_ASSETS. '/js/listings.js', array('jquery'),"1.0.0", 'all' );
@@ -114,13 +84,12 @@ class CA_Mobile_Elements_Admin{
 
 				$item = array();
 				if($id!=-1){
-					$item = CA_Header_Bar_Helper::get_item($id);					
+					$item = CA_Mobile_Element::get_item($id);					
 				}
 
 				?>
 				<div id="app"></div>
 				<?php			
-				// require_once("libs/mobile-elements.tmpl.php");
 
 
 	}

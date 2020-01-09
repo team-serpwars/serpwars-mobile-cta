@@ -1,8 +1,8 @@
 <?php
 /**
-* Plugin Name: Serpwars Mobile Element 1.21
+* Plugin Name: Serpwars Mobile Element 1.34
 * Description:Mobile Elements
-* Version: 1.21.5
+* Version: 1.52.5
 * Author: Robert Talavera
 * Author URI: http://roberttalavera.cu.ma/wp/
 * Plugin URI: http://roberttalavera.cu.ma/wp/
@@ -20,16 +20,14 @@ define( 'CA_MOBILE_ELEMENTS_ASSETS', CA_MOBILE_ELEMENTS_URI."assets" );
 
 require('includes/libs/mobile-elements.api_settings.class.php' );
 require('includes/mobile-element.class.php' );
-require('includes/header-helper.class.php' );
 require('includes/mobile-admin-class.php' );
 require('includes/mobile-elements.php' );
 require_once("frontend/frontend-helper.class.php");
-require_once("frontend/ca-frontend.class.php");
 require_once("frontend/main.php");
 require_once("frontend/marketing-tools.php");
-require('includes/facebook-chat.php' );
+// require('includes/facebook-chat.php' );
 
-require_once("includes/libs/facebook-chat/main.php");
+// require_once("includes/libs/facebook-chat/main.php");
 
 function hook_css() {
     ?>

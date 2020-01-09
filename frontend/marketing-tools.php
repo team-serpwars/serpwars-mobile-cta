@@ -179,14 +179,14 @@
 		}
 
 		function load_item($id){			;
-			$item = CA_Header_Bar_Helper::get_item($id);
+			$item = CA_Mobile_Element::get_item($id);
 			return  $item;
 		}
 
 	 	function load_module($item){	 	
 
 
-			$component = CA_Header_Bar_Helper::get_component_by_ID($item->id);
+			$component = CA_Mobile_Element::get_component_by_ID($item->id);
 	 		
 	 		// print_r($item);
 	 		$component_data = json_decode($component[0]->content);
