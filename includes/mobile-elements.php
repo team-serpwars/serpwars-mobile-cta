@@ -23,8 +23,9 @@ class CA_Mobile_Elements_Admin{
 	public function load_assets($hook){
 
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
-			wp_enqueue_style( "new-serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.40c66f4c.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.71b1e085.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.c2c31243.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.2b8f8b7e.css', array(),"1.0.0", 'all' );
+			// wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.71b1e085.css', array(),"1.0.0", 'all' );
 
 			global $post;
 
@@ -32,12 +33,15 @@ class CA_Mobile_Elements_Admin{
 			// wp_enqueue_style( "serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/ver2/css/vendor.min.css', array(),"1.0.4", 'all' );
 
 			// wp_enqueue_script( "serp-vendor", CA_MOBILE_ELEMENTS_ASSETS . '/ver2/js/vendor.min.js', array(), "1.0.4", true );
-			wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.7257d150.js', array(), "1.0.0", true );
-			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.1373dafb.js', array(), "1.0.0", true );
+			// wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.7257d150.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.1", true );
+			// wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.1373dafb.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.748e7c33.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			// $container = '{"class":"","id":"","layout":"start","gtm":{"category":""},"width":"custom","cw":{"size":320,"unit":"px"}}';
 			// wp_localize_script( "serp-app-new-js",'loaded_data', array() );
 			// wp_localize_script( "serp-app-new-js",'container', $container );
+
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 
 			// require_once("libs/icon-list.php");
@@ -130,7 +134,9 @@ class CA_Mobile_Elements_Admin{
 		</div>
 		<p>&nbsp;</p>
 		<div class="row">
-			<?php $collection = CA_Mobile_Element::get_collection(); ?>
+			<?php $collection = CA_Mobile_Element::get_collection();
+
+			 ?>
 
 			<table class="wp-list-table widefat fixed striped pages">
 				<thead>

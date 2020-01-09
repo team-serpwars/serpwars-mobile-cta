@@ -28,7 +28,9 @@
 		}
 		public static function get_collection(){
 			global $wpdb;
+
 			$results = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mobile_cta", OBJECT );
+
 			return $results;
 		}
 

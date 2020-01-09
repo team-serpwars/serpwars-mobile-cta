@@ -1,5 +1,7 @@
 <?php
-	
+	/*
+	deprecate this
+	*/
 	class CA_Header_Bar_Helper{
 		function __construct(){
 			add_action('init', array($this,'check_table') );
@@ -30,6 +32,8 @@
 		}
 		public static function get_collection(){
 			global $wpdb;
+
+
 			$results = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}header_bar", OBJECT );
 			return $results;
 		}
