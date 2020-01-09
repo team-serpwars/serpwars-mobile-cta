@@ -1,11 +1,10 @@
 <?php
 /**
-* Plugin Name: Serpwars Mobile Element 1.34
-* Description:Mobile Elements
-* Version: 1.52.5
-* Author: Robert Talavera
+* Plugin Name: Serpwars Mobile CTA 
+* Description:Mobile CTA
+* Version: 1.0.34
+* Author: SERPWARS
 * Author URI: http://roberttalavera.cu.ma/wp/
-* Plugin URI: http://roberttalavera.cu.ma/wp/
 * Text Domain: ca-mobile-elements
 * License: GPLv3
 */
