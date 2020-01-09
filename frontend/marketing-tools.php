@@ -188,7 +188,7 @@
 
 			$component = CA_Header_Bar_Helper::get_component_by_ID($item->id);
 	 		
-	 		print_r($item);
+	 		// print_r($item);
 	 		$component_data = json_decode($component[0]->content);
 
 	 		

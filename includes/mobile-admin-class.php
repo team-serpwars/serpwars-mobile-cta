@@ -328,7 +328,7 @@ public function del_item(){
 			$message = ($return_id!=-1) ? "Saved" : "Unable to Save Please Try again later";
 
 			$response = (object) array(
-				"return_id"=>$return_id ,
+				"return_id"=>$id  ,
 				"status"=>$status,
 				"message"=>$message
 			);

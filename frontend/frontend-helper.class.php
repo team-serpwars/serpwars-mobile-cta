@@ -75,12 +75,15 @@
 	public static function filterElements($collection,$postID){
 		$data = array();
 		foreach ($collection as $item) {
-			$continue_display = true;		
+			$continue_display = true;
 			if($item->exclusive_page=="true"){
-				if(count($item->pages)>0){
-					// if(!array_search($postID, $item->pages)){
-					// 	$continue_display = false;
-					// }
+				// echo array_search($postID, $item->pages);
+				if(count($item->pages)){
+					if(array_search($postID, $item->pages)===false){
+						$continue_display = false;
+					}else{
+						// $continue_display = true;
+					}
 				}
 			}
 			if($continue_display){
