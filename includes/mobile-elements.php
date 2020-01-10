@@ -24,12 +24,12 @@ class CA_Mobile_Elements_Admin{
 
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
 			wp_enqueue_style( "new-serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.c2c31243.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.5690e130.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.857e7471.css', array(),"1.0.0", 'all' );
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  $_GET["id"] : 0;
 			wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.4", true );
-			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.bb6fbf4d.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.15928d28.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
