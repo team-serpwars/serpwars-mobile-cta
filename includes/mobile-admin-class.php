@@ -89,7 +89,7 @@ class NB_Mobile_Elements_Admin{
 
 	public function load_assets($hook){
 		if($hook =="post.php"){
-				wp_enqueue_style( "ca-hotfix-metabox-admin",CA_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.css', array(),"1.0.0", 'all' );
+				wp_enqueue_style( "ca-hotfix-metabox-admin",CA_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.min.css', array(),"1.0.0", 'all' );
 				wp_enqueue_script( "scheduler_js",CA_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.js', array(), "1.0.0", true );
 		}
 	}
@@ -306,7 +306,7 @@ public function del_item(){
 		$content["container"] = $_POST["container"];
 		$content = (object) $content;
 
-		$id = $_POST["id"];
+			$id = $_POST["id"];
 
 			$data = array(
 				'title'=>$_POST['title'],
@@ -328,7 +328,7 @@ public function del_item(){
 			$message = ($return_id!=-1) ? "Saved" : "Unable to Save Please Try again later";
 
 			$response = (object) array(
-				"return_id"=>$id  ,
+				"return_id"=>$return_id  ,
 				"status"=>$status,
 				"message"=>$message
 			);

@@ -74,6 +74,8 @@
 
 	public static function filterElements($collection,$postID){
 		$data = array();
+
+		if(!empty($collection)){			
 		foreach ($collection as $item) {
 			$continue_display = true;
 			if($item->exclusive_page=="true"){
@@ -89,6 +91,7 @@
 			if($continue_display){
 				array_push($data,$item);
 			}
+		}
 		}
 		return $data;
 	}

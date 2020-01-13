@@ -42,6 +42,7 @@
 						echo "\n.serp-button-collections>ul>div>li:nth-child(".$i."){";
 						echo "background-color: ".$el->style->main->background.";";
 						echo "width: ".$el->style->main->width->size.$el->style->main->width->unit.";";
+
 						echo "height: ".$el->style->main->height->size.$el->style->main->height->unit.";";
 
 						if($el->style->border->enable){
@@ -146,36 +147,8 @@
 		}
 
 		public function load_assets(){
-
 			global $post;
-
-			// wp_enqueue_style( "material", plugin_dir_url( __FILE__ ) . '../assets/materialize/css/materialize.min.css', array(),"1.0.0", 'all' );
-			// wp_enqueue_style( "font-awesome", plugin_dir_url( __FILE__ ) . '../assets/font-awesome/css/font-awesome.min.css', array(),"1.0.0", 'all' );
-
-
-			//this one
-			// wp_enqueue_style( "serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/ver2/css/frontend.min.css', array(),"1.0.1", 'all' );
-			// wp_enqueue_style( "serp-vendor-new", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.5bb4ddc5.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "serp-app-new", CA_MOBILE_ELEMENTS_ASSETS. '/css/mobile-elements-style.css', array(),"1.0.0", 'all' );
-
-			// wp_enqueue_style( "main", plugin_dir_url( __FILE__ ) . 'main.css', array(),"1.0.0", 'all' );
-
-			// wp_enqueue_script( "ca-waypoint", plugin_dir_url( __FILE__ ) . '../assets/jquery.waypoints.min.js', array(), "1.0.1", true );
-			// wp_enqueue_script( "ca-countdown", plugin_dir_url( __FILE__ ) . '../assets/jquery.countdown.min.js', array(), "1.0.1", true );
-			//and this
-			// wp_enqueue_script( "serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/ver2/js/frontend-vendor.min.js', array(), "1.0.1", true );
-
-			// $component_id = json_decode(get_post_meta($post->ID,'ca_ma_selected_components',true))[0];
-
-			// // print_r($component_id);
-
-			// wp_localize_script(
-   //  	        	 'ca-frontend',
-   //      	    	 'data',   
-   //          		 array(
-   //          		 	'item' => (isset($component_id->id)) ? $this->load_item($component_id->id) : '{}'
-   //          	    )
-   //          	);
+			wp_enqueue_style( "serp-app-new", CA_MOBILE_ELEMENTS_ASSETS. '/css/mobile-elements-style.css', array(),"1.0.1", 'all' );
 		}
 
 		function load_item($id){			;
