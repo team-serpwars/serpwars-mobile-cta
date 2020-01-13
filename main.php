@@ -11,11 +11,11 @@
 
 
 
-define( 'CA_MOBILE_ELEMENTS_FILE', __FILE__ );
-define( 'CA_MOBILE_ELEMENTS_URI', plugin_dir_url( __FILE__ ) );
-define( 'CA_MOBILE_ELEMENTS', plugin_dir_path( CA_MOBILE_ELEMENTS_FILE ) );
-define( 'CA_MOBILE_ELEMENTS_PATH', plugin_dir_path( CA_MOBILE_ELEMENTS_FILE ) );
-define( 'CA_MOBILE_ELEMENTS_ASSETS', CA_MOBILE_ELEMENTS_URI."assets" );
+define( 'SERPWARS_MOBILE_ELEMENTS_FILE', __FILE__ );
+define( 'SERPWARS_MOBILE_ELEMENTS_URI', plugin_dir_url( __FILE__ ) );
+define( 'SERPWARS_MOBILE_ELEMENTS', plugin_dir_path( SERPWARS_MOBILE_ELEMENTS_FILE ) );
+define( 'SERPWARS_MOBILE_ELEMENTS_PATH', plugin_dir_path( SERPWARS_MOBILE_ELEMENTS_FILE ) );
+define( 'SERPWARS_MOBILE_ELEMENTS_ASSETS', SERPWARS_MOBILE_ELEMENTS_URI."assets" );
 
 require('includes/libs/mobile-elements.api_settings.class.php' );
 require('includes/mobile-element.class.php' );

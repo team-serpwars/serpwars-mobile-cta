@@ -1,5 +1,5 @@
 <?php
-	class ME_API_Settings{
+	class SERPWARS_API_Settings{
 		public static function api_settings_init(){
 
 
@@ -8,13 +8,13 @@
 			add_settings_section(
 				'me_pluginPage_section', 
 				__( '', 'ca-mobile-elements' ), 
-				array('ME_API_Settings','me_settings_section_callback'), 
+				array('SERPWARS_API_Settings','me_settings_section_callback'), 
 				'ca_set_api_values'
 			);
 			add_settings_field( 
 				'me_textarea_field_0', 
 				__( 'Google Tag Manager', 'ca-mobile-elements' ), 
-				array('ME_API_Settings','me_textarea_field_0_render'), 
+				array('SERPWARS_API_Settings','me_textarea_field_0_render'), 
 				'ca_set_api_values', 
 				'me_pluginPage_section' 
 			);
@@ -22,7 +22,7 @@
 			add_settings_field( 
 				'me_textarea_field_1', 
 				__( 'Facebook Pixel API', 'ca-mobile-elements' ), 
-				array('ME_API_Settings','me_textarea_field_1_render'), 
+				array('SERPWARS_API_Settings','me_textarea_field_1_render'), 
 				'ca_set_api_values', 
 				'me_pluginPage_section' 
 			);			

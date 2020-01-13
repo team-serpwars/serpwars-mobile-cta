@@ -89,8 +89,8 @@ class NB_Mobile_Elements_Admin{
 
 	public function load_assets($hook){
 		if($hook =="post.php"){
-				wp_enqueue_style( "ca-hotfix-metabox-admin",CA_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.min.css', array(),"1.0.0", 'all' );
-				wp_enqueue_script( "scheduler_js",CA_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.js', array(), "1.0.0", true );
+				wp_enqueue_style( "ca-hotfix-metabox-admin",SERPWARS_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.min.css', array(),"1.0.0", 'all' );
+				wp_enqueue_script( "scheduler_js",SERPWARS_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.js', array(), "1.0.0", true );
 		}
 	}
 
@@ -354,7 +354,7 @@ public function del_item(){
 		}
 
 	public function api_settings_init(){
-		ME_API_Settings::api_settings_init();
+		SERPWARS_API_Settings::api_settings_init();
 	}
 };
 

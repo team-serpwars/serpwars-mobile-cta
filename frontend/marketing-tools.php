@@ -148,7 +148,7 @@
 
 		public function load_assets(){
 			global $post;
-			wp_enqueue_style( "serp-app-new", CA_MOBILE_ELEMENTS_ASSETS. '/css/mobile-elements-style.css', array(),"1.0.1", 'all' );
+			wp_enqueue_style( "serp-app-new", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/mobile-elements-style.css', array(),"1.0.1", 'all' );
 		}
 
 		function load_item($id){			;

@@ -1,7 +1,7 @@
 <?php
 
 
-class CA_Mobile_Elements_Admin{
+class SERPWARS_Mobile_Elements_Admin{
 	function __construct(){
 		add_action('admin_menu', array($this,'create_menu') );
 		add_action('admin_enqueue_scripts', array($this,'load_assets') );
@@ -23,18 +23,18 @@ class CA_Mobile_Elements_Admin{
 	public function load_assets($hook){
 
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
-			wp_enqueue_style( "new-serp-vendor", CA_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.c2c31243.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "new-serp-app", CA_MOBILE_ELEMENTS_ASSETS. '/css/app.186f03d2.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-vendor", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.c2c31243.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.186f03d2.css', array(),"1.0.0", 'all' );
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  $_GET["id"] : 0;
-			wp_enqueue_script( "serp-vendor-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.5", true );
-			wp_enqueue_script( "serp-app-new-js", CA_MOBILE_ELEMENTS_ASSETS . '/js/app.fc759813.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.5", true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.fc759813.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
-			wp_enqueue_style( "new-serp-listings", CA_MOBILE_ELEMENTS_ASSETS. '/css/listings.css', array(),"1.0.0", 'all' );
-			wp_enqueue_script( "new-serp-listings", CA_MOBILE_ELEMENTS_ASSETS. '/js/listings.js', array('jquery'),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/listings.css', array(),"1.0.0", 'all' );
+			wp_enqueue_script( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/js/listings.js', array('jquery'),"1.0.0", 'all' );
 		}
 
 
@@ -58,7 +58,7 @@ class CA_Mobile_Elements_Admin{
                  $position );
 
   		add_submenu_page( 'ca-mobile-elements', 'New Mobile CTA', 'Add New', $capability, 'ca_add_new_mobile_cta', array($this,'create_new_item_page') );
-  		add_submenu_page( 'ca-mobile-elements', 'API', 'API', $capability, 'ca_set_api_values', array('ME_API_Settings','me_options_page') );
+  		add_submenu_page( 'ca-mobile-elements', 'API', 'API', $capability, 'ca_set_api_values', array('SERPWARS_API_Settings','me_options_page') );
   		
 
   	}
@@ -138,7 +138,7 @@ dashicons-admin-page"></span></a></td>
 
 }
 
-new CA_Mobile_Elements_Admin();
+new SERPWARS_Mobile_Elements_Admin();
 $nb_me_admin = new NB_Mobile_Elements_Admin; $nb_me_admin->del_item();
 
 if(isset($_GET['page']) && $_GET['page'] == 'ca-mobile-elements'){
