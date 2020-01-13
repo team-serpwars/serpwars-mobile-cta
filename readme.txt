@@ -1,5 +1,5 @@
 === Serpwars Mobile CTA ===
-Contributors: serpwars,noobertx
+Contributors: serpwars
 Donate link: https://example.com/
 Tags: serpwars, mobile, cta
 Requires at least: 5.0
