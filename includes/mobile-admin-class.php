@@ -163,7 +163,7 @@ class NB_Mobile_Elements_Admin{
 		<?php
 	}
 	public function get_pages(){
-		$title = $_POST['data'];
+		$title = sanitize_text_field($_POST['data']);
 		$collection = CA_Mobile_Element::get_pages();
 		// foreach ($collection as $item) { 			echo "<li><a href ='#' data-value-id='".$item->ID."'>".$item->post_title."</li>";		}
 		echo json_encode($collection);
@@ -171,7 +171,7 @@ class NB_Mobile_Elements_Admin{
 	}
 	// public function get_pages(){		$collection = CA_Mobile_Element::get_pages();	}
 	public function get_page_info(){
-		$title = $_POST['data'];
+		$title = sanitize_text_field($_POST['data']);
 		$collection = CA_Mobile_Element::get_component($title);
 		foreach ($collection as $item) {
 			echo "<li><a href ='#' data-value-id='".$item->id."'>".$item->title."</li>";
@@ -180,7 +180,7 @@ class NB_Mobile_Elements_Admin{
 	} 
 
 		public function get_page_component(){
-			$page_ID = $_POST['id'];
+			$page_ID = sanitize_text_field($_POST['id']);
 			global $wpdb;
 			$item = $wpdb->get_results( "SELECT ID,post_title FROM `{$wpdb->prefix}posts` WHERE ID =".$page_ID, OBJECT );
 
@@ -190,14 +190,14 @@ class NB_Mobile_Elements_Admin{
 		}  
 
 	public function get_component(){
-			$id = $_POST['id'];
+			$id = sanitize_text_field($_POST['id']);
 
 			$item = CA_Mobile_Element::get_component_by_ID((object)array('id'=>$id));
 			echo json_encode($item);
 			die();
 		} 
 	public function clone_item(){
-		$id = $_POST["id"];
+		$id = sanitize_text_field($_POST["id"]);
 		$item = CA_Mobile_Element::get_item($id);
 		$num = CA_Mobile_Element::get_last_index();
 		$title = $item->title." Clone ".$num;
@@ -210,7 +210,7 @@ class NB_Mobile_Elements_Admin{
 		die();
 	}
 	public function update_item(){
-			$id = $_POST['id'];			
+			$id = sanitize_text_field($_POST['id']);			
 			// $module_settings = $_POST['module_settings'];
 			$settings = array();
 
