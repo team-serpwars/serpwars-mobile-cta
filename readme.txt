@@ -1,14 +1,19 @@
-Serpwars Mobile CTA 
+=== Serpwars Mobile CTA ===
+Contributors: serpwars,noobertx
+Donate link: https://example.com/
+Tags: serpwars, mobile, cta
+Requires at least: 5.0
+Tested up to: 5.3.2
+Stable tag: 5.3.2
+Requires PHP: 5.2.4
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-* **Core Features**
-    * Create CTA Buttons and view them on mobile devices
-    * **Zero feature bloat**
-    * Works out-of-the-box
-    * **2 minute install**
-    * **Stand-alone at yourdomain.com/projects**
-    * **Includes Social Sharing Buttons**
-    * **Facebook & Twitter Sharing**
+CONVERT MORE WEBSITE VISITORS INTO NEW CUSTOMERS
 
+== Description ==
+
+Drive more Phone Calls and Conversions from your WordPress Website in under 60 Seconds. Use WP Conversion Bar to setup effective Mobile CTAs – for free.
 
 == Installation ==
 
@@ -47,9 +52,42 @@ If you are unable to use any of the methods due to internet connectivity and fil
 6. Navigate to Plugins -> Installed
 7. Activate the plugin
 
+
 == Frequently Asked Questions ==
+
 Nothing here right now.
 
+== Screenshots ==
+
+1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
+the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
+directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
+(or jpg, jpeg, gif).
+2. This is the second screen shot
+
+== Changelog ==
+
+= 1.0.2 =
+* Preset #1 Revision Done (Left aligned and fas phone default)
+* hover formatting fixed
+* Used blue on selecting/selected Components
+* the extra margin for container has been fixed
+* Revisions on presets to set the container width to 'auto'
+
+= 1.0.2 =
+* Switch Preset1 and Preset2
+* Changed The Shape of the icon picker
+* Change #4184F4 color for all the accents instead of the green colors
+* removed extra spaces on the left and right in the plugin
+* fix the issue on Showing buttons on specific Pages
+* fix  checkbox revisions ,inconsistent preset issue , border not working issue
+* and removed some old codes that is no longer used
+* Also it does send an event to GA when buttons are clicked
+
+= 1.0 =
+* Initial Release
+
+* List versions from most recent at top to oldest at bottom.
 
 == Upgrade Notice ==
 
