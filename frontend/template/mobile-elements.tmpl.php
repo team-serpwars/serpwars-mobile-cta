@@ -1,6 +1,6 @@
 <div class="serp-mobile-elements-wrap">
 	<div class="serp-mobile-elements">
-		<div class="serp-button-collections-wrap">
+		<div class="serp-button-collections-wrap" id="button-wrapper">
 			<div class="serp-button-collections">
 				<ul class="<?php echo $container->layout;?>">
 				<div>	
@@ -45,3 +45,8 @@
 
 	</div>
 </div>
+<script>
+	var h = document.getElementById("button-wrapper").offsetHeight
+	console.log(h );
+	document.getElementsByTagName("body")[0].style.marginBottom=h+"px";
+</script>
