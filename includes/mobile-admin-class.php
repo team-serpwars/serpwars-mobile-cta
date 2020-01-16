@@ -92,6 +92,9 @@ class NB_Mobile_Elements_Admin{
 				wp_enqueue_style( "ca-hotfix-metabox-admin",SERPWARS_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.min.css', array(),"1.0.0", 'all' );
 				wp_enqueue_script( "scheduler_js",SERPWARS_MOBILE_ELEMENTS_ASSETS. '/custom-element-metabox.js', array(), "1.0.0", true );
 		}
+
+	
+
 	}
 
 	function load_item($id){			;
