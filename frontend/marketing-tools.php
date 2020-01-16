@@ -148,7 +148,7 @@
 
 		public function load_assets(){
 			global $post;
-			
+
 			wp_enqueue_style( "serp-app-new", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/mobile-elements-style.min.css', array(),"1.0.2", 'all' );
 		}
 
@@ -158,18 +158,9 @@
 		}
 
 	 	function load_module($item){	 	
-
-
 			$component = CA_Mobile_Element::get_component_by_ID($item->id);
-	 		
-	 		// print_r($item);
 	 		$component_data = json_decode($component[0]->content);
-
-	 		
 	 		$template = "mobile-footer-navbar";
-
-	 		// require("template/header-bar.tmpl.php");
-	 		require("template/mobile-footer-navbar-simple.tmpl.php");
 	 	}
 	};
 
