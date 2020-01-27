@@ -107,52 +107,7 @@
 			require_once("template/mobile-elements.tmpl.php");
 		}
 
-		public function render_com_modules(){
-			global $post;
-			$post_ID = $post->ID;
-
-			$component_data = get_post_meta($post_ID,"ca_ma_selected_components",true);
-			$component_data = json_decode($component_data);
-
-			?>
-			<div class="ca_mobile_module_collection">
-				<?php
-				foreach ($component_data as $data_id) { 
-
-					$data_id->enable_schedule = isset($data_id->enable_schedule) ? $data_id->enable_schedule : false;
-
-					?>
-					<?php
-						if($data_id->enable_schedule==true){
-							$start_time = explode(" ",$data_id->start_time)[1];
-							$end_time = explode(" ",$data_id->end_time)[1];
-							
-							// date_default_timezone_set("Asia/Kuala_Lumpur");
-							// date_default_timezone_set("America/Los_Angeles");
-
-							$date = date("H:i:s");
-
-							$debug=false;
-							if($debug==true){
-							?>
-							Current Date : <?php echo $date; ?> - Start Time : <?php echo $start_time; ?> - End Time :<?php echo $end_time; ?> <br>		
-							<?php
-							}
-							if((strtotime($start_time)<strtotime($date))&& ( strtotime($end_time)>strtotime($date) || (strtotime($end_time)<strtotime($start_time))) ){
-								new ca_FrontEnd_Mobile_Module($data_id);						
-							}else{
-
-							}
-
-
-						}else{
-							new ca_FrontEnd_Mobile_Module($data_id);
-						} 
-				} ?>
-			</div>
-
-			<?php
-		}
+	
 		function load_item($id){			;
 			$item = CA_Mobile_Element::get_item($id);
 			return  $item;
