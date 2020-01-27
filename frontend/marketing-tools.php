@@ -1,14 +1,9 @@
 <?php
 	class ca_Marketing_tools_frontend{
 		function __construct(){
-
-			// add_action( 'wp_footer', array($this,'render_com_modules' ));
 			add_action( 'wp_footer', array($this,'render_mobile_elements' ));
 			add_action( 'wp_head', array($this,'render_mobile_elements_inline_style' ));
-		
-		}
-		public function getComponent(){
-
+			add_action('wp_enqueue_scripts', array($this,'enqueue_scripts'));		
 		}
 		public function render_mobile_elements_inline_style(){
 
@@ -105,6 +100,9 @@
 
 
 			require_once("template/mobile-elements.tmpl.php");
+		}
+		public function enqueue_scripts(){
+			wp_enqueue_style('font-awesome-5', SERPWARS_MOBILE_ELEMENTS_URI . 'assets/css/font-awesome.min.css');			
 		}
 
 	
