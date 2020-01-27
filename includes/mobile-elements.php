@@ -27,7 +27,7 @@ class SERPWARS_Mobile_Elements_Admin{
 			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.186f03d2.css', array(),"1.0.0", 'all' );
 			global $post;
 
-			$id = (isset($_GET["id"])) ?  $_GET["id"] : 0;
+			$id = (isset($_GET["id"])) ?  sanitize_text_field($_GET["id"]) : 0;
 			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.5", true );
 			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.bd9638be.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
@@ -82,16 +82,16 @@ class SERPWARS_Mobile_Elements_Admin{
 		</div>
   	<?php }
   	public function create_new_item_page(){	 
-				$id = (isset($_GET['id'])) ? $_GET['id'] : -1;
+		$id = (isset($_GET['id'])) ? sanitize_text_field($_GET['id']) : -1;
 
-				$item = array();
-				if($id!=-1){
-					$item = CA_Mobile_Element::get_item($id);					
-				}
+		$item = array();
+		if($id!=-1){
+			$item = CA_Mobile_Element::get_item($id);					
+		}
 
-				?>
-				<div id="app"></div>
-				<?php			
+		?>
+		<div id="app"></div>
+		<?php			
 
 
 	}
