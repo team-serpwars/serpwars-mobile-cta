@@ -24,12 +24,12 @@ class SERPWARS_Mobile_Elements_Admin{
 
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
 			wp_enqueue_style( "new-serp-vendor", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.c2c31243.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.186f03d2.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.519addda.css', array(),"1.0.0", 'all' );
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  sanitize_text_field($_GET["id"]) : 0;
 			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.61e59e7d.js', array(), "1.0.5", true );
-			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.bd9638be.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.f257c64a.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){

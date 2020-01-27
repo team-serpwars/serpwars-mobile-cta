@@ -24,18 +24,5 @@ require('includes/mobile-elements.php' );
 require_once("frontend/frontend-helper.class.php");
 require_once("frontend/main.php");
 require_once("frontend/marketing-tools.php");
-// require('includes/facebook-chat.php' );
 
-// require_once("includes/libs/facebook-chat/main.php");
-
-function hook_css() {
-    ?>
-        <style id="styler">
-            .wp_head_example {
-                background-color : #f1f1f1;
-            }
-        </style>
-    <?php
-}
-add_action('admin_head', 'hook_css');
 ?>
