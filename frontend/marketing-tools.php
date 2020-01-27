@@ -83,28 +83,19 @@
 			echo "</style>";
 		}
 		public function render_mobile_elements(){
-
 			global $post;
 			$post_ID = $post->ID;
-
 			$component_data = get_post_meta($post_ID,"ca_ma_selected_components",true);
 			$component_data = json_decode($component_data);
-
 			$test_string = CA_Mobile_Element::get_item($component_data[0]->id);
-
-
 			$parse_data = json_decode($test_string->content);
 			$loaded_data = $parse_data->loaded_data;
 			$container = $parse_data->container;
-
-
-
 			require_once("template/mobile-elements.tmpl.php");
 		}
 		public function enqueue_scripts(){
 			wp_enqueue_style('font-awesome-5', SERPWARS_MOBILE_ELEMENTS_URI . 'assets/css/font-awesome.min.css');			
 		}
-
 	
 		function load_item($id){			;
 			$item = CA_Mobile_Element::get_item($id);
