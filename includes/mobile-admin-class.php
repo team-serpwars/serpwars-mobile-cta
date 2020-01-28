@@ -10,6 +10,7 @@ class NB_Mobile_Elements_Admin{
 
 		add_action( 'wp_ajax_ca_saveitem',array($this, 'save_item' ));
 		add_action( 'wp_ajax_save_item',array($this, 'save_item' ));
+		// add_action( 'wp_ajax_ca_updateitem',array($this, 'update_item' ));
 
 		add_action( 'wp_ajax_ca_clone_item',array($this, 'clone_item' ));
 		add_action( 'wp_ajax_ca_removeitem',array($this, 'remove_item' ));
@@ -211,9 +212,73 @@ class NB_Mobile_Elements_Admin{
 		echo CA_Mobile_Element::add_item($data);
 		die();
 	}
- 
+	public function update_item(){
+			$id = sanitize_text_field($_POST['id']);			
+			// $module_settings = $_POST['module_settings'];
+			$settings = array();
+
+			$module_settings = json_encode($_POST['module_settings']);
+			$ca_ma_selected_components = $_POST['ca_ma_selected_components'];
+			// foreach ($module_settings as $s) {
+			// 	if($s['value']=="on"){
+			// 		$settings[$s['name']]=true;					
+			// 	}else{
+			// 		$settings[$s['name']]=false;										
+			// 	}
+			// }
+
+			$data = array(
+					'title'=>$_POST['title'],
+					'message'=>$_POST['message'],
+					'content' => json_encode($_POST['content']),
+					'expiration'=>$_POST['expiration'],
+					'settings'=>$module_settings,
+			);
+
+
+			/*Remotely adding post meta*/
+			
+			$status = CA_Mobile_Element::update_item($id,$data);
+			$debug_data = array();
+
+			if($status){
+				$settings = $_POST['module_settings'];
+				global $wpdb;
+
+				foreach ($settings['page_settings'] as $page) {
+
+					$the_data = $_POST['ca_ma_selected_components'];
+
+					$page_meta = json_decode(get_post_meta( $page['id'], "ca_ma_selected_components",true)[0]);
+
+					if(!$page_meta || $page_meta=""){
+						$page_meta = array();						
+					}
+
+			 		// array_push($debug_data,gettype($page_meta));
+					array_push($page_meta,$the_data);
+			 		$post_meta_Status = update_post_meta( $page['id'], "ca_ma_selected_components", json_encode($page_meta)); 
+
+
+				}
+
+				/*Removing from posts*/
+				$delete_pages = $_POST['remove_from_pages'];
+				foreach($delete_pages  as $page){
+					delete_post_meta($page, "ca_ma_selected_components");
+				}				 
+				
+				echo json_encode(array("text"=>"Item is Updated","value"=>""));
+			}else{
+			echo json_encode(array("text"=>"Unexpected Error Occured","value"=>""));
+			// 	echo false;
+			}
+
+
+			die();
+		}  
 	public function remove_item(){
-		$id = $_POST['id'];
+		$id = sanitize_text_field($_POST['id']);
 		echo CA_Mobile_Element::remove_item($id);
 		die();
 	} 
@@ -238,14 +303,14 @@ public function del_item(){
 		$return_id = -1;
 
 		$content= array();
-		$content["loaded_data"] = $_POST["loaded_data"];
-		$content["container"] = $_POST["container"];
+		$content["loaded_data"] = sanitize_text_field($_POST["loaded_data"]);
+		$content["container"] = sanitize_text_field($_POST["container"]);
 		$content = (object) $content;
 
-			$id = $_POST["id"];
+			$id = sanitize_text_field($_POST["id"]);
 
 			$data = array(
-				'title'=>$_POST['title'],
+				'title'=>sanitize_text_field($_POST['title']),
 				'content' => json_encode($content),
 			);
 
