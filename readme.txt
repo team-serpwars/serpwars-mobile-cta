@@ -66,8 +66,26 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+= 1.0.4 =
+* Fixed button hover issues
+* Removed All Types of button that is not used 
+* Changed ADVANCE to ADVANCED?
+* Removed Google tag manager on the container options
+* Removed Class and id 
+* changed the options for Content Layout from Layout 1 and Layout 2 to Side Icon and Top Icon
+* combined the tabs CONTENT and STYLING 
+* moved the CONTAINER OPTIONS for Content Layout and Content Width under the CONTENT tab 
+* move the CONTAINER OPTIONS for Content Layout and Content Width under the CONTENT tab 
+* Renamed option to be "Show Only On Specific Page" 
+* presets are displayed by default
+* Custom Preset Added 
+* Button for adding custom button removed
+* Button Nane Instead of title 
+* Changed the submenu name to "Buttons"
+* Aligned Fields 
 
-= 1.0.2 =
+
+= 1.0.3 =
 * Preset #1 Revision Done (Left aligned and fas phone default)
 * hover formatting fixed
 * Used blue on selecting/selected Components

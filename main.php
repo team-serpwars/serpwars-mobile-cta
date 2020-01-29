@@ -3,7 +3,7 @@
 * Plugin Name: Serpwars Mobile CTA 
 * Description:CONVERT MORE WEBSITE VISITORS INTO NEW CUSTOMERS
 * Drive more Phone Calls and Conversions from your WordPress Website in under 60 Seconds. Use WP Conversion Bar to setup effective Mobile CTAs – for free.
-* Version: 1.0.2
+* Version: 1.0.4
 * Author: serpwars
 * Author URI: https://profiles.wordpress.org/serpwars/
 * License: GPLv3
