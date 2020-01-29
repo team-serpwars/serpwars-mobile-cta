@@ -31,7 +31,7 @@ class SERPWARS_Mobile_Elements_Admin{
 			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.c7f8c2db.js', array(), "1.0.5", true );
 			// wp_deregister_script('jquery');
 			// wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
-			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.5cd1ca31.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.ff7627e8.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
@@ -61,6 +61,7 @@ class SERPWARS_Mobile_Elements_Admin{
                  $icon_url, 
                  $position );
 
+  		add_submenu_page( 'ca-mobile-elements', 'New Mobile CTA', 'Add New', $capability, 'ca_add_new_mobile_cta', array($this,'create_new_item_page') );
   		add_submenu_page( 'ca-mobile-elements', 'New Mobile CTA', 'Add New', $capability, 'ca_add_new_mobile_cta', array($this,'create_new_item_page') );
   		add_submenu_page( 'ca-mobile-elements', 'API', 'API', $capability, 'ca_set_api_values', array('SERPWARS_API_Settings','me_options_page') );
   		
