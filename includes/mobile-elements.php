@@ -61,7 +61,7 @@ class SERPWARS_Mobile_Elements_Admin{
                  $icon_url, 
                  $position );
 
-  		add_submenu_page( 'ca-mobile-elements', 'New Mobile CTA', 'Add New', $capability, 'ca_add_new_mobile_cta', array($this,'create_new_item_page') );
+  		add_submenu_page( $menu_slug, 'New Mobile CTA', 'Buttons', $capability,  $menu_slug);
   		add_submenu_page( 'ca-mobile-elements', 'New Mobile CTA', 'Add New', $capability, 'ca_add_new_mobile_cta', array($this,'create_new_item_page') );
   		add_submenu_page( 'ca-mobile-elements', 'API', 'API', $capability, 'ca_set_api_values', array('SERPWARS_API_Settings','me_options_page') );
   		
