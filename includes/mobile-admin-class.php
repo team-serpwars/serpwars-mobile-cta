@@ -303,8 +303,8 @@ public function del_item(){
 		$return_id = -1;
 
 		$content= array();
-		$content["loaded_data"] = sanitize_text_field($_POST["loaded_data"]);
-		$content["container"] = sanitize_text_field($_POST["container"]);
+		$content["loaded_data"] = esc_textarea($_POST["loaded_data"]);
+		$content["container"] = esc_textarea($_POST["container"]);
 		$content = (object) $content;
 
 			$id = sanitize_text_field($_POST["id"]);
@@ -314,27 +314,28 @@ public function del_item(){
 				'content' => json_encode($content),
 			);
 
+			print_r($data);
+			// if($id==0){
+			// 	$return_id =  CA_Mobile_Element::add_item($data);
+			// }else{
+			// 	$return_id = CA_Mobile_Element::update_item($id,$data);		
+			// 	if($return_id ==1)		{
+			// 		$return_id =$id;
+			// 	}else{
+			// 		$return_id =1;
+			// 	}
+			// }
+			// $status = ($return_id!=-1) ? "success" : "error";
+			// $message = ($return_id!=-1) ? "Saved" : "Unable to Save Please Try again later";
 
-			if($id==0){
-				$return_id =  CA_Mobile_Element::add_item($data);
-			}else{
-				$return_id = CA_Mobile_Element::update_item($id,$data);		
-				if($return_id ==1)		{
-					$return_id =$id;
-				}else{
-					$return_id =1;
-				}
-			}
-			$status = ($return_id!=-1) ? "success" : "error";
-			$message = ($return_id!=-1) ? "Saved" : "Unable to Save Please Try again later";
+			// $response = (object) array(
+			// 	"return_id"=>$return_id  ,
+			// 	"status"=>$status,
+			// 	"message"=>$message
+			// );
 
-			$response = (object) array(
-				"return_id"=>$return_id  ,
-				"status"=>$status,
-				"message"=>$message
-			);
+			// echo json_encode($response);
 
-			echo json_encode($response);
 			// // print_r(json_encode($_POST['content']));
 			die();
 		}
