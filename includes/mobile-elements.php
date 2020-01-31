@@ -28,8 +28,8 @@ class SERPWARS_Mobile_Elements_Admin{
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  sanitize_text_field($_GET["id"]) : 0;
-			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.632364b7.js', array(), "1.0.5", true );
-			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.fb0c01a1.js', array(), "1.0.0", true );
+			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.688f8301.js', array(), "1.0.5", true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.5ee69fac.js', array(), "1.0.0", true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
