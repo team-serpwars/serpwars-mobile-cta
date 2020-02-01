@@ -355,19 +355,3 @@ dashicons-admin-page"></span></a></td>
 }
 
 new SERPWARS_Mobile_Elements_Admin();
-$nb_me_admin = new NB_Mobile_Elements_Admin; $nb_me_admin->del_item();
-
-if(isset($_GET['page']) && $_GET['page'] == 'ca-mobile-elements'){
-
-?>
-
-<script>
-function del(id){
-	if(confirm("Are you sure to delete this record!")){
-		var path = "admin.php?page=ca-mobile-elements&del="+id;
-        location.href = path;
-	}
-}
-</script>
-
-<?php } ?>
