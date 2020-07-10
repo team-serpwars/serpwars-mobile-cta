@@ -1,7 +1,7 @@
 <div class="serp-mobile-elements-wrap">
 	<div class="serp-mobile-elements">
 		<div class="serp-button-collections-wrap" id="button-wrapper">
-			<div class="serp-button-collections">
+			<div class="<?php echo $static_class; ?> serp-button-collections">
 				<ul class="<?php echo $container->layout;?>">
 				<div>	
 				<?php 

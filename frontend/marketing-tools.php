@@ -91,6 +91,7 @@
 			$parse_data = json_decode($test_string->content);
 			$loaded_data = $parse_data->loaded_data;
 			$container = $parse_data->container;
+			$static_class = "";
 			require_once("template/mobile-elements.tmpl.php");
 		}
 		public function enqueue_scripts(){

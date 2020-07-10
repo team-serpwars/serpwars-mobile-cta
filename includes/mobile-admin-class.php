@@ -142,9 +142,17 @@ class NB_Mobile_Elements_Admin{
 		die();
 	} 
 
+public function del_item(){
+	global $wpdb;
+	$id = (isset($_GET['del']) && $_GET['del'] != '') ? $_GET['del']:'';
+	if($id != ''){
+		$wpdb->delete( "{$wpdb->prefix}header_bar", array( 'id' => $id ), array( '%d' ) );
+	}
+}	
+	
 
 	public function load_element_item(){
-		$id = sanitize_text_field($_POST["id"]);
+		$id = $_POST["id"];
 		$item = CA_Mobile_Element::get_item($id);
 		echo json_encode($item);
 		die();
@@ -191,6 +199,7 @@ class NB_Mobile_Elements_Admin{
 
 			echo json_encode($response);
 
+			// print_r(json_encode($_POST['content']));
 			die();
 		}
 	public function meta_box_save($post_id){

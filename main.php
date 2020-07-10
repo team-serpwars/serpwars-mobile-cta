@@ -25,4 +25,8 @@ require_once("frontend/frontend-helper.class.php");
 require_once("frontend/main.php");
 require_once("frontend/marketing-tools.php");
 
+require_once("mobile-cta-render.php");
+
+
+
 ?>
