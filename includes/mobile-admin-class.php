@@ -13,6 +13,7 @@ class NB_Mobile_Elements_Admin{
 		add_action( 'save_post', array($this,'meta_box_save' ));
 		add_action( 'wp_ajax_ca_get_page_info',array($this, 'get_page_info' ));
 		add_action( 'wp_ajax_ca_get_pages',array($this, 'get_pages' ));
+
 		add_action( 'wp_ajax_ca_get_component',array($this, 'get_component' ));
 		add_action( 'wp_ajax_ca_get_page_component',array($this, 'get_page_component' ));
 
@@ -91,6 +92,7 @@ class NB_Mobile_Elements_Admin{
 		<?php
 	}
 	public function get_pages(){
+
 		$title = sanitize_text_field($_POST['data']);
 		$collection = CA_Mobile_Element::get_pages();
 		echo json_encode($collection);
