@@ -33,8 +33,8 @@ class SERPWARS_Mobile_Elements_Admin{
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
-			wp_enqueue_style( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/listings.css', array(),"1.0.0", 'all' );
-			wp_enqueue_script( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/js/listings.js', array('jquery'),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/listings.css', array(),microtime(), 'all' );
+			wp_enqueue_script( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/js/listings.js', array('jquery'),microtime(), 'all' );
 
 			wp_enqueue_style( 'prefix-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css' );
 		}
@@ -255,9 +255,11 @@ class SERPWARS_Mobile_Elements_Admin{
 				<thead>
 					<tr>
 						<th></th>
-						<th>Title</th>
+						<th style="width:200px;">Title</th>
 						<th>Preview</th>
-						<th>Delete</th>
+						<th style="text-align:center">Display Options</th>
+						<th style="text-align:center">Statistics</th>
+						<th style="width:50px;">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -270,6 +272,7 @@ dashicons-admin-page"></span></a></td>
 								<a href = "admin.php?page=ca_add_new_mobile_cta&id=<?php echo $item->id;?>" class ="row-title"><?php echo $item->title;?></a>
 								</b>
 							</td>
+							
 							<td style="width:320px">
 								<?php
 									
@@ -341,14 +344,25 @@ dashicons-admin-page"></span></a></td>
 									</div>
 								</div>
 							</td>
+							<td style="text-align:center">
+							<div style="display:flex;">
+								<div style="width:50%">
+									<select name="" id="" class="">
+										<option value="all">On All</option>
+										<option value="except-on">Except On</option>
+									</select>
+								</div>
+								<div  style="width:50%">
+									<a href="#" class="modal-trigger">These Pages</a>
+								</div>
+							</div>																
+							</td>
+							<td></td>
 							<td><a href="#" class="del-mbl ca-delete" data-id="<?php echo $item->id;?>" style="float:Left;" ><span class="dashicons dashicons-trash"></span></a></td>
 						</tr>
 					<?php 	}  ?>
 				</tbody>
 			</table>
-
-		
-
 		</div>
   	<?php }
 
