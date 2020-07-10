@@ -21,4 +21,16 @@
 			})
 		}
 	})
+
+	$(".select-display-option").on("change",function(){
+		var display_options = $(this).val();
+		var item_id = $(this).data('item-id');
+		$.post(ajaxurl,{
+			action:"ca_change_display_option",
+			display_options:display_options,
+			item_id:item_id
+		},function(data){
+			console.log(data);
+		})
+	})
 })(jQuery)

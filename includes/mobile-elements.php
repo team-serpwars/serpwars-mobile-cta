@@ -345,10 +345,12 @@ dashicons-admin-page"></span></a></td>
 								</div>
 							</td>
 							<td style="text-align:center">
+								<?php //print_r( $item);?>
 							<div style="display:flex;">
 								<div style="width:50%">
-									<select name="" id="" class="">
+									<select name="" id="" class="select-display-option" data-item-id="<?php echo $item->id?>">
 										<option value="all">On All</option>
+										<option value="only-on">Only On</option>
 										<option value="except-on">Except On</option>
 									</select>
 								</div>
@@ -357,7 +359,9 @@ dashicons-admin-page"></span></a></td>
 								</div>
 							</div>																
 							</td>
-							<td></td>
+							<td>
+								
+							</td>
 							<td><a href="#" class="del-mbl ca-delete" data-id="<?php echo $item->id;?>" style="float:Left;" ><span class="dashicons dashicons-trash"></span></a></td>
 						</tr>
 					<?php 	}  ?>

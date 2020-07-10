@@ -13,6 +13,7 @@ class NB_Mobile_Elements_Admin{
 		add_action( 'save_post', array($this,'meta_box_save' ));
 		add_action( 'wp_ajax_ca_get_page_info',array($this, 'get_page_info' ));
 		add_action( 'wp_ajax_ca_get_pages',array($this, 'get_pages' ));
+		add_action( 'wp_ajax_ca_change_display_option',array($this, 'change_display_option' ));
 
 		add_action( 'wp_ajax_ca_get_component',array($this, 'get_component' ));
 		add_action( 'wp_ajax_ca_get_page_component',array($this, 'get_page_component' ));
@@ -90,6 +91,22 @@ class NB_Mobile_Elements_Admin{
           </div>
         </div>
 		<?php
+	}
+
+	public function change_display_option(){
+		$item_id = sanitize_text_field($_POST['item_id']);
+		$display_options = sanitize_text_field($_POST['display_options']);
+
+		$item = CA_Mobile_Element::get_item($item_id)->display_pages;
+
+		$item = ($item!="") ? $item : '{"display_options":"all","pages":[]}';
+
+		$item = json_decode($item);
+		$item->display_options = $display_options;
+
+
+		$status = CA_Mobile_Element::update_display_options($item_id,json_encode($item));
+		wp_send_json_success($status);
 	}
 	public function get_pages(){
 

@@ -117,6 +117,18 @@
 				array( '%d' ) 
 			);
 		}
+		public static function update_display_options($id,$data){
+			global $wpdb;
+			return $wpdb->update( 
+				"{$wpdb->prefix}mobile_cta", 
+				array( 
+					'display_pages' => $data
+				), 				
+				array( 'id' => $id ), 
+				array( '%s' ), 
+				array( '%d' ) 
+			);
+		}
 
 		public static function remove_item($id){
 			global $wpdb;
