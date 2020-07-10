@@ -25,6 +25,17 @@
 			else{
 
 			}
+
+			$row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '".$wpdb->prefix."mobile_cta' AND column_name ='display_pages'" );
+
+			if(empty($row)){
+ 				$wpdb->query("ALTER TABLE ".$wpdb->prefix."mobile_cta ADD display_pages text NOT NULL");
+			}
+			$row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '".$wpdb->prefix."mobile_cta' AND column_name ='statistics'" );
+
+			if(empty($row)){
+ 				$wpdb->query("ALTER TABLE ".$wpdb->prefix."mobile_cta ADD statistics text NOT NULL");
+			}
 		}
 		public static function get_collection(){
 			global $wpdb;
