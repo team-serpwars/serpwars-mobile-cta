@@ -1,3 +1,218 @@
 .pages thead th:nth-child(1){
 	width:44px;
 }
+				.serp-mobile-elements-wrap{
+	bottom: 12px;
+    position: fixed;
+    z-index: 99999;
+}
+	.serp-button-collections>ul{
+    	margin: 0 auto;
+	    width: 100%;
+	}
+	.serp-button-collections>ul {
+    	display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+	width:100%;
+
+	}
+	.serp-button-collections>ul.start{
+    	justify-content: start;
+
+
+	}
+	.serp-button-collections>ul.right{
+    	justify-content: flex-end;
+	}
+	.serp-button-collections>ul.center{
+    	justify-content: center;
+	}
+	.serp-button-collections>ul.space_around{
+    	justify-content: space-around;
+	}
+	.serp-button-collections>ul.space_between{
+    	justify-content: space-between;
+	}
+	.serp-button-collections>ul.space_evenly{
+    	justify-content: space-evenly;
+	}
+	.serp-mobile-elements{
+
+		position: relative;
+	}
+
+	.serp-button-collections-wrap{
+		/*position: absolute;*/
+		/*bottom:-11px;*/
+		/*left: 0;*/
+		/*right: 0;*/
+	}
+	/*.serp-button-collections>ul .ca_button_content>span:last-child {
+    	padding-left: 0px;
+    	padding-right: 10px;
+	}*/
+	.vertical span {
+    	display: block;
+	}
+	.ca_button_content.vertical{
+		display: block;
+
+
+	}
+.ca_button_content {
+    width: 100%;
+    height: 100%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.ca_button_content span {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.ca_button_content span:before {
+    height: 100%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+.ca_button_content.vertical span {
+    height: auto;
+}
+
+.ca_button_content.vertical span:before {
+    height: 100%;
+    vertical-align: middle;
+    display: inline;
+    align-items: center;
+}
+	.serp-button-collections>ul .ca_button_content{
+    	min-height: 42.2px;
+	}
+	li.ca-share-button.item{
+		-webkit-box-align: center;
+    	-ms-flex-align: center;
+    	align-items: center;
+    	display: -webkit-box;
+    	display: -ms-flexbox;
+    	display: flex;
+    	text-align: center
+	}
+	li.ca-share-button.item a {
+    width: 100%;
+    height: 100%;
+}
+.text_only .ca_icon{
+	display: none;
+}
+.icon_only .ca_btn_text{
+	display: none;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+}
+
+.serp-mobile-elements-wrap {
+    display: none;
+}
+
+@media screen and (max-width:850px){
+    .serp-mobile-elements-wrap {
+        display: block;
+    }
+}
+
+.post-overlay {
+    position: fixed;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    transition: 0.75s all;
+}
+
+.post-overlay.show {
+    z-index: 9;
+    opacity: 1;
+}
+
+.post-modal {
+    position: fixed;
+    left: 30%;
+    right: 30%;
+    top: -100%;
+    background: #fff;
+    z-index: 10;
+    transition: 0.5s all;
+    opacity: 0;
+}
+
+.post-modal.show {
+    opacity: 1;
+    top: 20%;
+}
+.post-modal{
+	padding: 0px;
+}
+.post-modal .post-modal-header,
+.post-modal .post-modal-content,
+.post-modal .post-modal-footer{
+	padding: 20px;	
+}
+.post-modal-content {
+    min-height: 300px;
+    max-height: 300px;
+}
+a.btn {
+    padding: 10px;
+    text-decoration: none;
+    border: 1px solid;
+    border-radius: 5px;
+    text-align: right;
+    display: inline-block;
+}
+
+.post-modal-footer {
+    text-align: right;
+}
+select#post-lists {
+    min-width: 100%;
+    display: block;
+    min-height: 300px;
+}
+a.btn.btn-save {
+    background: #0073aa;
+    color: #fff;
+}
+
+a.btn {
+    transition: 0.25s all;
+}
+
+a.btn.btn-save:hover {
+    background: #fff;
+    color: #0073aa;
+}

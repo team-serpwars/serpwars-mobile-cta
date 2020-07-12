@@ -96,6 +96,22 @@ class SERPWARS_Mobile_Elements_Admin{
 
 
 	}
+	public function render_post_modal(){ ?>
+		<div class="post-overlay"></div>
+		<div class="post-modal">
+			<div class="post-modal-wrapper">
+				<div class="post-modal-header"><h2>Select Page(s)</h2></div>
+				<div class="post-modal-content">
+					<select name="post-items[]" multiple="multiple" id="post-lists"></select>
+				</div>
+				<div class="post-modal-footer">
+					<a href="#" class="btn btn-save">Save</a>
+					<a href="#" class="btn btn-cancel">Cancel</a>
+				</div>
+			</div>
+		</div>
+
+	<?php }
   	public function render_admin_home(){ ?>
 		<div class="wrap">
 		<p>&nbsp;</p>
@@ -107,164 +123,22 @@ class SERPWARS_Mobile_Elements_Admin{
 		<p>&nbsp;</p>
 		<div class="row">
 			<?php $collection = CA_Mobile_Element::get_collection();
-
+				$this->render_post_modal();
 			 ?>
-			<style>
-				.serp-mobile-elements-wrap{
-	bottom: 12px;
-    position: fixed;
-    z-index: 99999;
-}
-	.serp-button-collections>ul{
-    	margin: 0 auto;
-	    width: 100%;
-	}
-	.serp-button-collections>ul {
-    	display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: start;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-	width:100%;
-
-	}
-	.serp-button-collections>ul.start{
-    	justify-content: start;
-
-
-	}
-	.serp-button-collections>ul.right{
-    	justify-content: flex-end;
-	}
-	.serp-button-collections>ul.center{
-    	justify-content: center;
-	}
-	.serp-button-collections>ul.space_around{
-    	justify-content: space-around;
-	}
-	.serp-button-collections>ul.space_between{
-    	justify-content: space-between;
-	}
-	.serp-button-collections>ul.space_evenly{
-    	justify-content: space-evenly;
-	}
-	.serp-mobile-elements{
-
-		position: relative;
-	}
-
-	.serp-button-collections-wrap{
-		/*position: absolute;*/
-		/*bottom:-11px;*/
-		/*left: 0;*/
-		/*right: 0;*/
-	}
-	/*.serp-button-collections>ul .ca_button_content>span:last-child {
-    	padding-left: 0px;
-    	padding-right: 10px;
-	}*/
-	.vertical span {
-    	display: block;
-	}
-	.ca_button_content.vertical{
-		display: block;
-
-
-	}
-.ca_button_content {
-    width: 100%;
-    height: 100%;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-.ca_button_content span {
-    height: 100%;
-    vertical-align: middle;
-}
-
-.ca_button_content span:before {
-    height: 100%;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
-}
-.ca_button_content.vertical span {
-    height: auto;
-}
-
-.ca_button_content.vertical span:before {
-    height: 100%;
-    vertical-align: middle;
-    display: inline;
-    align-items: center;
-}
-	.serp-button-collections>ul .ca_button_content{
-    	min-height: 42.2px;
-	}
-	li.ca-share-button.item{
-		-webkit-box-align: center;
-    	-ms-flex-align: center;
-    	align-items: center;
-    	display: -webkit-box;
-    	display: -ms-flexbox;
-    	display: flex;
-    	text-align: center
-	}
-	li.ca-share-button.item a {
-    width: 100%;
-    height: 100%;
-}
-.text_only .ca_icon{
-	display: none;
-}
-.icon_only .ca_btn_text{
-	display: none;
-}
-
-.waves-effect {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    vertical-align: middle;
-    z-index: 1;
-    -webkit-transition: .3s ease-out;
-    transition: .3s ease-out;
-}
-
-.serp-mobile-elements-wrap {
-    display: none;
-}
-
-@media screen and (max-width:850px){
-    .serp-mobile-elements-wrap {
-        display: block;
-    }
-}
-			</style>
 			<table class="wp-list-table widefat fixed striped pages">
 				<thead>
 					<tr>
 						<th></th>
 						<th style="width:200px;">Title</th>
 						<th>Preview</th>
-						<th style="text-align:center">Display Options</th>
+						<th style="text-align:center">Display CTA</th>
 						<th style="text-align:center">Statistics</th>
 						<th style="width:50px;">Delete</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php foreach ($collection as $item) { ?>
-						<tr>
+						<tr class="item-row_<?php echo $item->id;?>">
 							<td><a href = "admin.php?page=ca_add_new_mobile_cta&id=<?php echo $item->id;?>" style="float:Left;" class ="row-title"><span class="dashicons dashicons-edit"></span></a><a href = "#" data-id="<?php echo $item->id;?>" style="float:left;" class ="ca-clone row-title"><span class="dashicons 
 dashicons-admin-page"></span></a></td>						
 					
@@ -345,17 +219,17 @@ dashicons-admin-page"></span></a></td>
 								</div>
 							</td>
 							<td style="text-align:center">
-								<?php //print_r( $item);?>
+								<?php $display_on = json_decode($item->display_pages)->display_on;?>
 							<div style="display:flex;">
 								<div style="width:50%">
 									<select name="" id="" class="select-display-option" data-item-id="<?php echo $item->id?>">
-										<option value="all">On All</option>
-										<option value="only-on">Only On</option>
-										<option value="except-on">Except On</option>
+										<option value="all" <?php echo ($display_on =="all") ? "selected" :"" ?>>On All</option>
+										<option value="only-on" <?php echo ($display_on =="only-on") ? "selected" :"" ?>>Only On</option>
+										<option value="except-on" <?php echo ($display_on =="except-on") ? "selected" :"" ?>>Except On</option>
 									</select>
 								</div>
 								<div  style="width:50%">
-									<a href="#" class="modal-trigger">These Pages</a>
+									<a href="#" class="modal-trigger" data-item-id="<?php echo $item->id;?>">These Pages</a>
 								</div>
 							</div>																
 							</td>

@@ -50,6 +50,11 @@
 			$results = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mobile_cta WHERE id = ".$id, OBJECT );
 			return $results[0];
 		}
+		public static function get_item_display_pages($id){
+			global $wpdb;
+			$results = $wpdb->get_results( "SELECT display_pages FROM {$wpdb->prefix}mobile_cta WHERE id = ".$id, OBJECT );
+			return $results[0];
+		}
 
 		public static function get_component_by_ID($item){
 			global $wpdb;

@@ -18,6 +18,8 @@ class NB_Mobile_Elements_Admin{
 		add_action( 'wp_ajax_ca_get_component',array($this, 'get_component' ));
 		add_action( 'wp_ajax_ca_get_page_component',array($this, 'get_page_component' ));
 
+		add_action( 'wp_ajax_ca_display_options',array($this, 'ca_display_options' ));
+		add_action( 'wp_ajax_ca_save_display_option',array($this, 'ca_save_display_option' ));
 		 add_action( 'admin_init',array($this,  'api_settings_init' ));
 	}
 
@@ -25,7 +27,71 @@ class NB_Mobile_Elements_Admin{
 			add_meta_box( 'ca-marketing-tools', 'Mobile CTA', array($this,'ca_marketing_metabox'), 'post', 'normal', 'high' );
 			add_meta_box( 'ca-marketing-tools', 'Mobile CTA', array($this,'ca_marketing_metabox'), 'page', 'normal', 'high' );
 	}
+	public function ca_save_display_option(){
+		$id = sanitize_text_field($_POST['id']);
+		$pages = sanitize_text_field($_POST['pages']);		
+		$display_on = sanitize_text_field($_POST['display_on']);		
 
+		$result = CA_Mobile_Element::get_item_display_pages($id);
+		if($result->display_pages==""){
+			$result->display_pages = (object) array(
+				"display_on" => "all",
+				"pages"		=> $pages
+			);
+		}
+
+		if($display_on == "all"){
+			$result->display_pages = (object) array(
+				"display_on" => "all",
+				"pages"		=> array()
+			);
+		}else{
+			$result->display_pages = (object) array(
+				"display_on" => $display_on,
+				"pages"		=> $pages
+			);
+		}
+
+
+		$r = CA_Mobile_Element::update_display_options($id,json_encode($result->display_pages));
+		wp_send_json_success($r);
+		
+
+		die();
+
+	}
+	public function ca_display_options(){
+		$id = sanitize_text_field($_POST['id']);
+
+		$result = CA_Mobile_Element::get_item_display_pages($id);
+
+		if($result->display_pages==""){
+			$result->display_pages = (object) array(
+				"display_on" => "all",
+				"pages"		=> array()
+			);
+			// wp_send_json_success($result->display_pages);
+		}else{
+			$result->display_pages = json_decode($result->display_pages);
+		}
+
+		$the_query = new WP_Query( array(
+			'post_type' => 'page',
+			'posts_per_page' => -1
+		) );
+
+		$post_items = array();
+
+		while ( $the_query->have_posts() ) {
+ 		   $the_query->the_post();
+ 		   array_push($post_items,array(
+ 		   		"id" => get_the_ID(),
+ 		   		"title" => get_the_title()
+ 		   ));
+		}
+
+		wp_send_json_success(array("posts"=>$post_items,"display_options"=>$result->display_pages));
+	}
 	public function ca_marketing_metabox(){
 			global $post;
 			 wp_nonce_field( 'ca_ma_metabox_nonce', 'ca_ma_metabox_nonce' );
