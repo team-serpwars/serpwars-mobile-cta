@@ -1,34 +1,85 @@
 <?php
 add_action('wp_head', 'mobile_cta_get_items_style'); 
 add_action('wp_footer', 'mobile_cta_render_structure'); 
-function mobile_cta_get_items_style(){
-	// Not Exclusive Page
-	$mobile_cta_items = json_decode(CA_Mobile_Element::get_collection()[1]->content)->loaded_data;
 
-	$cta_collections = CA_Mobile_Element::get_collection();
-	// foreach($cta_collections as $item){
-	echo "<pre>";
-		print_r(json_decode($cta_collections [0]->content));
-	echo "</pre>";
-	// }
-	// echo "<style id='custom_element_style'>";
-	// foreach($mobile_cta_items as $index => $item){
-	// 	if($item->exclusive_page){
-	// 		mobile_cta_render_style($item,($index+1));
-	// 	}
-	// }
-	// echo "</style>";
+class Mobile_CTA_Frontend_Render{
+	private static $instance;
+	private static $cta_collections;
+	private static $cta_sections;
+    private function __construct() {
+    	$current_post_ID =  get_the_ID();
+    	self::$cta_collections = CA_Mobile_Element::get_collection();
+    	self::$cta_sections = array();
+
+    	foreach(self::$cta_collections as $item){
+			// echo count($item);
+			$display_pages = json_decode($item->display_pages);
+			// print_r($display_pages );
+			if(empty($item->display_pages)){
+				array_push(self::$cta_sections,array(
+					"ID" => $item->id,
+					"content"=>json_decode($item->content)
+				));
+			}else if($display_pages->display_on == "all"){
+				array_push(self::$cta_sections,array(
+					"ID" => $item->id,
+					"content"=>json_decode($item->content)
+				));
+			}else if($display_pages->display_on == "except-on"){
+				$display_pages->pages = str_replace('\"',"",$display_pages->pages);
+				if(!in_array($current_post_ID,json_decode($display_pages->pages))){
+					array_push(self::$cta_sections,array(
+						"ID" => $item->id,
+						"content"=>json_decode($item->content)
+					));
+				}
+			}else if($display_pages->display_on == "only-on"){
+				$display_pages->pages = str_replace('\"',"",$display_pages->pages);
+				if(in_array($current_post_ID,json_decode($display_pages->pages))){
+					array_push(self::$cta_sections,array(
+						"ID" => $item->id,
+						"content"=>json_decode($item->content)
+					));
+				}
+			}
+	
+		}
+
+    }
+    public static function get_instance() {
+        {
+            if (! self::$instance)
+                self::$instance = new Mobile_CTA_Frontend_Render();
+            return self::$instance;
+        }
+    }
+
+    public function getItems(){
+    	return self::$cta_sections;
+    }
+
 }
 
-function mobile_cta_render_style($el,$index){	
+function mobile_cta_get_items_style(){
+	foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
+		echo "<style id='custom_element_style_".$item['ID']."'>";
+		foreach($item['content']->loaded_data as  $index => $loaded){
+			mobile_cta_render_style($loaded,$item['ID'],($index+1));
+		}
+		echo "</style>";
+	}
+}
 
+
+function mobile_cta_render_style($el,$parent_index,$index){	
 	$border_string = $el->style->border->size."px ".$el->style->border->style." ".$el->style->border->color.";";
 
-	$width = ($el->style->main->adjust_width) ? $el->style->main->width->size.$el->style->main->width->unit : "auto";
-	$height = ($el->style->main->adjust_height) ? $el->style->main->height->size.$el->style->main->height->unit : "auto";
+	$width = ($el->style->main->adjust_width==true) ? $el->style->main->width->size.$el->style->main->width->unit : "auto";
+	$height = ($el->style->main->adjust_height===true) ? $el->style->main->height->size.$el->style->main->height->unit : "auto";
+	echo "/** Marking Adjust Width = ".$el->style->main->adjust_width."**/";
 	$style = array(
 		array(
-		"el" => ".serp-button-static.serp-button-collections>ul>div>li:nth-child(".$index.")",
+		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.")",
 		"styles" => array(
 			'basic' => array(
 				array(
@@ -127,7 +178,7 @@ function mobile_cta_render_style($el,$index){
 		)
 		),
 		array(
-		"el" => ".serp-button-static.serp-button-collections>ul>div>li:nth-child(".$index.") .ca_icon",
+		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.") .ca_icon",
 		"styles" => array(
 			'basic' => array(
 				array(
@@ -146,7 +197,7 @@ function mobile_cta_render_style($el,$index){
 		)
 		),
 		array(
-		"el" => ".serp-button-static.serp-button-collections>ul>div>li:nth-child(".$index.") .ca_btn_text",
+		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.") .ca_btn_text",
 		"styles" => array(
 			'basic' => array(
 				array(
@@ -204,11 +255,12 @@ function mobile_render_style_rule($el,$data){
 	echo "}";
 }
 function mobile_cta_render_structure(){
-	$loaded_data = $mobile_cta_items = json_decode(CA_Mobile_Element::get_collection()[1]->content)->loaded_data;
-
-	$container = $mobile_cta_items = json_decode(CA_Mobile_Element::get_collection()[1]->content)->loaded_data;
-
-	$static_class = "serp-button-static";
-
-	require("frontend/template/mobile-elements.tmpl.php");
+	echo "<div class ='serp-mobile-elements-section'>";
+	foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
+		$static_class = "serp-button-static serp-button-collections_".$item["ID"];
+		$loaded_data = $item['content']->loaded_data;
+		require("frontend/template/mobile-elements.tmpl.php");	
+	}
+	echo '</div>';
 }
+
