@@ -23,14 +23,16 @@ class SERPWARS_Mobile_Elements_Admin{
 	public function load_assets($hook){
 
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
-			wp_enqueue_style( "new-serp-vendor", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.836e03a9.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.d7ac40c8.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-vendor", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.56689a7f.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.958814a7.css', array(),"1.0.0", 'all' );
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  sanitize_text_field($_GET["id"]) : 0;
-			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.004b33ec.js', array(), "1.0.5", true );
-			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.6f296684.js', array(), microtime(), true );
+			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.71337edb.js', array(), "1.0.5", true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.98d9e844.js', array(), microtime(), true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
+			$appvar = array("id"=>$id) ;
+			wp_localize_script( "serp-app-new-js",'appvar', $appvar );
 			wp_localize_script( "serp-app-new-js",'fetch_id', $id );
 		}else if($hook=='toplevel_page_ca-mobile-elements'){
 			wp_enqueue_style( "new-serp-listings", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/listings.css', array(),microtime(), 'all' );
@@ -130,9 +132,10 @@ class SERPWARS_Mobile_Elements_Admin{
 					<tr>
 						<th></th>
 						<th style="width:200px;">Title</th>
-						<th>Preview</th>
-						<th style="text-align:center">Display CTA</th>
-						<th style="text-align:center">Statistics</th>
+						<th style="max-width:
+						320px">Preview</th>
+						<th style="text-align:center;width:320px;">Display CTA</th>
+						<!-- <th style="text-align:center">Statistics</th> -->
 						<th style="width:50px;">Delete</th>
 					</tr>
 				</thead>
@@ -218,24 +221,24 @@ dashicons-admin-page"></span></a></td>
 									</div>
 								</div>
 							</td>
-							<td style="text-align:center">
+							<td style="text-align:center;">
 								<?php $display_on = json_decode($item->display_pages)->display_on;?>
 							<div style="display:flex;">
-								<div style="width:50%">
-									<select name="" id="" class="select-display-option" data-item-id="<?php echo $item->id?>">
+								<div style="width:70%">
+									<select name="" id="" class="select-display-option" data-item-id="<?php echo $item->id?>" style="width:100%;">
 										<option value="all" <?php echo ($display_on =="all") ? "selected" :"" ?>>On All</option>
 										<option value="only-on" <?php echo ($display_on =="only-on") ? "selected" :"" ?>>Only On</option>
 										<option value="except-on" <?php echo ($display_on =="except-on") ? "selected" :"" ?>>Except On</option>
 									</select>
 								</div>
-								<div  style="width:50%">
+								<div  style="width:30%">
 									<a href="#" class="modal-trigger" data-item-id="<?php echo $item->id;?>">These Pages</a>
 								</div>
 							</div>																
 							</td>
-							<td>
+							<!-- <td>
 								
-							</td>
+							</td> -->
 							<td><a href="#" class="del-mbl ca-delete" data-id="<?php echo $item->id;?>" style="float:Left;" ><span class="dashicons dashicons-trash"></span></a></td>
 						</tr>
 					<?php 	}  ?>
