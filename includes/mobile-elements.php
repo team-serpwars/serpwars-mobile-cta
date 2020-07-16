@@ -24,12 +24,12 @@ class SERPWARS_Mobile_Elements_Admin{
 
 		if($hook=='mobile-cta_page_ca_add_new_mobile_cta'){	
 			wp_enqueue_style( "new-serp-vendor", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/chunk-vendors.56689a7f.css', array(),"1.0.0", 'all' );
-			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.958814a7.css', array(),"1.0.0", 'all' );
+			wp_enqueue_style( "new-serp-app", SERPWARS_MOBILE_ELEMENTS_ASSETS. '/css/app.55fa04f1.css', array(),"1.0.0", 'all' );
 			global $post;
 
 			$id = (isset($_GET["id"])) ?  sanitize_text_field($_GET["id"]) : 0;
 			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.71337edb.js', array(), "1.0.5", true );
-			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.98d9e844.js', array(), microtime(), true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.b094a97e.js', array(), microtime(), true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			$appvar = array("id"=>$id) ;
 			wp_localize_script( "serp-app-new-js",'appvar', $appvar );

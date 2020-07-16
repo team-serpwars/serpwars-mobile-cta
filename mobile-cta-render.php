@@ -75,7 +75,7 @@ function mobile_cta_render_style($el,$parent_index,$index){
 	$border_string = $el->style->border->size."px ".$el->style->border->style." ".$el->style->border->color.";";
 
 	$width = ($el->style->main->adjust_width==true) ? $el->style->main->width->size.$el->style->main->width->unit : "auto";
-	$height = ($el->style->main->adjust_height===true) ? $el->style->main->height->size.$el->style->main->height->unit : "auto";
+	$height = ($el->style->main->adjust_height=="true") ? $el->style->main->height->size.$el->style->main->height->unit : "auto";
 	echo "/** Marking Adjust Width = ".$el->style->main->adjust_width."**/";
 	$style = array(
 		array(
@@ -85,96 +85,101 @@ function mobile_cta_render_style($el,$parent_index,$index){
 				array(
 					"property"=>"background-color",
 					"value"=>$el->style->main->background,
-					"unit"=>""
+					"unit"=>"",
+					'condition' => true
 				),
 				array(
 					"property"=>"width",
-					"value"=>$width,
-					"unit"=>"",
-					'condition' => $el->style->main->adjust_width,
+					"value"=>$el->style->main->width->size,
+					"unit"=>$el->style->main->width->unit,
+					'condition' => ($el->style->main->adjust_width==true),
 				),
 				array(
 					"property"=>"height",
-					"value"=>$height,
-					"unit"=>"",
-					'condition' => $el->style->main->adjust_height,
+					"value"=>$el->style->main->height->size,
+					"unit"=>$el->style->main->height->unit,
+					'condition' => ($el->style->main->adjust_height==true && $el->style->main->layout != "vertical"),
 				)
 			),
 			'border'=>array(
 				array(
 					"property"=>"border-top",
 					"value"=> ($el->style->sides->top) ? $border_string : "none",
-					'condition' => $el->style->sides->top,
+					'condition' => ($el->style->border->enable == true && $el->style->sides->top==true),
 				),
 				array(
 					"property"=>"border-right",
 					"value"=> ($el->style->sides->right) ? $border_string : "none",
-					'condition' => $el->style->sides->right,
+					'condition' => ($el->style->border->enable == true && $el->style->sides->right==true),
 				),
 				array(
 					"property"=>"border-bottom",
 					"value"=> ($el->style->sides->bottom) ? $border_string : "none",
-					'condition' => $el->style->sides->bottom,
+					'condition' => ($el->style->border->enable == true && $el->style->sides->bottom==true),
 				),
 				array(
 					"property"=>"border-left",
 					"value"=> ($el->style->sides->left) ? $border_string : "none",
-					'condition' => $el->style->sides->left,
+					'condition' => ($el->style->border->enable == true && $el->style->sides->left==true),
 				)
 			),
 			'radius'=>array(
 				// 'condition' => $el->style->border->enable,
 				array(
 					"property"=>"border-top-left-radius",
-					"value"=> ($el->style->border_radius->top_left)? ($el->style->border_radius->top_left): 0,
-					"unit"=>"px"
-					// 'condition' => $el->style->sides->top,
+					"value"=>$el->style->border_radius->top_left,
+					"unit"=>"px",
+					'condition' => ($el->style->border_radius->enable==true),
 				),
 				array(
 					"property"=>"border-top-right-radius",
-					"value"=> ($el->style->border_radius->top_right)? ($el->style->border_radius->top_right): 0,
-					"unit"=>"px"
-					// 'condition' => $el->style->sides->top,
+					"value"=>$el->style->border_radius->top_right,
+					"unit"=>"px",
+					'condition' => ($el->style->border_radius->enable==true),
 				),
 				array(
-					"property"=>"border-bottom-left",
-					"value"=> ($el->style->border_radius->bottom_left)? ($el->style->border_radius->bottom_left): 0,
-					"unit"=>"px"
-					// 'condition' => $el->style->sides->top,
+					"property"=>"border-bottom-left-radius",
+					"value"=>$el->style->border_radius->bottom_left,
+					"unit"=>"px",
+					'condition' => ($el->style->border_radius->enable==true),
 				),
 				array(
-					"property"=>"border-bottom-right",
-					"value"=> ($el->style->border_radius->bottom_right)? ($el->style->border_radius->bottom_right): 0,
-					"unit"=>"px"
-					// 'condition' => $el->style->sides->top,
+					"property"=>"border-bottom-right-radius",
+					"value"=>$el->style->border_radius->bottom_right,
+					"unit"=>"px",
+					'condition' => ($el->style->border_radius->enable==true),
 				)
 			),
 			'margin' =>array(
 				array(
 					"property"=>"margin-top",
 					"value"=> $el->style->main->margin->top,
-					"unit"=>"px"
+					"unit"=>"px",
+					'condition' =>  $el->style->main->margin->top,
 				),
 				array(
 					"property"=>"margin-left",
 					"value"=> $el->style->main->margin->left,
-					"unit"=>"px"
+					"unit"=>"px",
+					'condition' =>  $el->style->main->margin->left,
 				),
 				array(
 					"property"=>"margin-bottom",
 					"value"=> $el->style->main->margin->bottom,
-					"unit"=>"px"
+					"unit"=>"px",
+					'condition' =>  $el->style->main->margin->bottom,
 				),
 				array(
 					"property"=>"margin-right",
 					"value"=> $el->style->main->margin->right,
-					"unit"=>"px"
+					"unit"=>"px",
+					'condition' =>  $el->style->main->margin->right,
 				),
 			)
 		),
 		"condition"=>array(
-			"border"=> $el->style->border->enable,
-			"radius"=> $el->style->border_radius->enable
+
+
 		)
 		),
 		array(
@@ -184,12 +189,20 @@ function mobile_cta_render_style($el,$parent_index,$index){
 				array(
 					"property"=>"color",
 					"value"=>$el->style->icon->color,
-					"unit"=>""
+					"unit"=>"",
+					"condition"=>true
 				),
 				array(
 					"property"=>"font-size",
 					"value"=>$el->style->icon->size,
-					"unit"=>$el->style->icon->unit
+					"unit"=>$el->style->icon->unit,
+					"condition"=>true
+				),
+				array(
+					"property"=>"line-height",
+					"value"=>"1.5",
+					"unit"=>"em",
+					"condition"=>true
 				)
 			)
 		),
@@ -203,12 +216,50 @@ function mobile_cta_render_style($el,$parent_index,$index){
 				array(
 					"property"=>"color",
 					"value"=>$el->style->text->color,
-					"unit"=>""
+					"unit"=>"",
+					"condition"=> true
 				),
 				array(
 					"property"=>"font-size",
 					"value"=>$el->style->text->size,
-					"unit"=>$el->style->text->unit
+					"unit"=>$el->style->text->unit,
+					"condition"=> true
+				)
+			)
+		),
+		"condition"=>array(
+		)
+		),
+		array(
+		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.") .ca_btn_sub_text",
+		"styles" => array(
+			'basic' => array(
+				array(
+					"property"=>"color",
+					"value"=>$el->style->sub_text->color,
+					"unit"=>"",
+					"condition"=> true
+				),
+				array(
+					"property"=>"font-size",
+					"value"=>$el->style->sub_text->size,
+					"unit"=>$el->style->sub_text->unit,
+					"condition"=> true
+				)
+			)
+		),
+		"condition"=>array(
+		)
+		),
+		array(
+		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.") .text-wrap",
+		"styles" => array(
+			'basic' => array(
+				array(
+					"property"=>"text-align",
+					"value"=>$el->style->text->align,
+					"unit"=>"",
+					"condition"=> true
 				)
 			)
 		),
@@ -225,22 +276,23 @@ function mobile_cta_render_style($el,$parent_index,$index){
 	}
 }
 
-function mobile_cta_set_style($property,$value,$unit='',$condition=true){
-	if($condition){
+function mobile_cta_set_style($property,$value,$unit=''){
 		return $property.":". $value.$unit.";";
-	}
 }
 
 function mobile_cta_render_setting($item,$condition=true){
 	$output = " ";
 	foreach($item as  $i){
-		$output .= mobile_cta_set_style($i['property'],$i['value'],$i['unit']);
+		if($i["condition"]===true){
+			$output .= mobile_cta_set_style($i['property'],$i['value'],$i['unit']);
+		}
 	}
 	return $output;
 }
 
 function mobile_cta_render_item_style($item,$condition){
 	$output = "";
+
 	foreach($item as $key => $i){		
 		if((!array_key_exists($key,$condition)) && (empty(json_decode($condition[$key])) ))	{
 			$output .= mobile_cta_render_setting($i,$i['condition']);
@@ -259,6 +311,7 @@ function mobile_cta_render_structure(){
 	foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
 		$static_class = "serp-button-static serp-button-collections_".$item["ID"];
 		$loaded_data = $item['content']->loaded_data;
+		$container = $item['content']->container;
 		require("frontend/template/mobile-elements.tmpl.php");	
 	}
 	echo '</div>';
