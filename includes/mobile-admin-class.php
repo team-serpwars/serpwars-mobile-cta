@@ -63,6 +63,17 @@ class NB_Mobile_Elements_Admin{
 	public function ca_display_options(){
 		$id = sanitize_text_field($_POST['id']);
 
+		$args = array(
+   			'public'   => true
+		);
+  
+$output = 'names'; // 'names' or 'objects' (default: 'names')
+$operator = 'and'; // 'and' or 'or' (default: 'and')
+  
+$post_types = get_post_types( $args, $output, $operator );
+
+unset($post_types ["attachment"]);
+
 		$result = CA_Mobile_Element::get_item_display_pages($id);
 
 		if($result->display_pages==""){
@@ -75,19 +86,22 @@ class NB_Mobile_Elements_Admin{
 			$result->display_pages = json_decode($result->display_pages);
 		}
 
+		$post_items = array();
+		foreach($post_types as $t => $ptype){
+		$post_items[$t] = array();
 		$the_query = new WP_Query( array(
-			'post_type' => 'page',
+			'post_type' => $t,
 			'posts_per_page' => -1
 		) );
 
-		$post_items = array();
 
 		while ( $the_query->have_posts() ) {
  		   $the_query->the_post();
- 		   array_push($post_items,array(
+ 		   array_push($post_items[$t],array(
  		   		"id" => get_the_ID(),
  		   		"title" => get_the_title()
  		   ));
+		}
 		}
 
 		wp_send_json_success(array("posts"=>$post_items,"display_options"=>$result->display_pages));

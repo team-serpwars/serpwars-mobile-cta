@@ -6,8 +6,11 @@ class Mobile_CTA_Frontend_Render{
 	private static $instance;
 	private static $cta_collections;
 	private static $cta_sections;
-    private function __construct() {
-    	$current_post_ID =  get_the_ID();
+	private static $current_post_ID;
+    private function __construct($id) {
+    	
+    	$current_post_ID = ($id==-1) ? get_the_ID() : $id;
+
     	self::$cta_collections = CA_Mobile_Element::get_collection();
     	self::$cta_sections = array();
 
@@ -46,10 +49,10 @@ class Mobile_CTA_Frontend_Render{
 		}
 
     }
-    public static function get_instance() {
+    public static function get_instance($id=-1) {
         {
             if (! self::$instance)
-                self::$instance = new Mobile_CTA_Frontend_Render();
+                self::$instance = new Mobile_CTA_Frontend_Render($id);
             return self::$instance;
         }
     }
@@ -58,25 +61,30 @@ class Mobile_CTA_Frontend_Render{
     	return self::$cta_sections;
     }
 
+
+
 }
 
 function mobile_cta_get_items_style(){
-	foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
-		echo "<style id='custom_element_style_".$item['ID']."'>";
-		foreach($item['content']->loaded_data as  $index => $loaded){
-			mobile_cta_render_style($loaded,$item['ID'],($index+1));
-		}
+		echo "<style id='mobile-cta-ajax-style'>";
 		echo "</style>";
-	}
+	// foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
+	// 	echo "<style id='custom_element_style_".$item['ID']."'>";
+	// 	foreach($item['content']->loaded_data as  $index => $loaded){
+	// 		mobile_cta_render_style($loaded,$item['ID'],($index+1));
+	// 	}
+	// 	echo "</style>";
+	// }
 }
 
 
 function mobile_cta_render_style($el,$parent_index,$index){	
+	$output = "";
 	$border_string = $el->style->border->size."px ".$el->style->border->style." ".$el->style->border->color.";";
 
 	$width = ($el->style->main->adjust_width==true) ? $el->style->main->width->size.$el->style->main->width->unit : "auto";
 	$height = ($el->style->main->adjust_height=="true") ? $el->style->main->height->size.$el->style->main->height->unit : "auto";
-	echo "/** Marking Adjust Width = ".$el->style->main->adjust_width."**/";
+	$output .= "/** Marking Adjust Width = ".$el->style->main->adjust_width."**/";
 	$style = array(
 		array(
 		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.")",
@@ -272,8 +280,10 @@ function mobile_cta_render_style($el,$parent_index,$index){
 		$element = $s["el"];
 		$item_style = $s["styles"];
 		$condition = $s["condition"];
-		mobile_render_style_rule($s["el"],mobile_cta_render_item_style($item_style,$condition));
+		$output .= mobile_render_style_rule($s["el"],mobile_cta_render_item_style($item_style,$condition));
 	}
+
+	return $output;
 }
 
 function mobile_cta_set_style($property,$value,$unit=''){
@@ -302,12 +312,16 @@ function mobile_cta_render_item_style($item,$condition){
 }
 
 function mobile_render_style_rule($el,$data){
-	echo $el."{";
-	echo $data;
-	echo "}";
+
+	$output = "";
+	$output .= $el."{". $data."}";
+	return $output;
 }
 function mobile_cta_render_structure(){
-	echo "<div class ='serp-mobile-elements-section'>";
+
+	echo '<div class="mcta-spinner-wrap">
+<i class="fas fa-circle-notch fa-spin" style="font-size:42px"></i></div>';
+	echo "<div class ='serp-mobile-elements-section' style='display:none'>";
 	foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
 		$static_class = "serp-button-static serp-button-collections_".$item["ID"];
 		$loaded_data = $item['content']->loaded_data;
@@ -317,3 +331,43 @@ function mobile_cta_render_structure(){
 	echo '</div>';
 }
 
+
+class Mobile_CTA_AJAX_Loaders {
+	function __construct(){
+		add_action('wp_ajax_nopriv_load_mobile_ctas', array($this,'load_mobile_ctas'));
+		add_action('wp_ajax_load_mobile_ctas', array($this,'load_mobile_ctas'));	
+	}
+	private function print_style($id){
+		$output = "";
+		foreach(Mobile_CTA_Frontend_Render::get_instance($id)->getItems() as $item){
+			foreach($item['content']->loaded_data as  $index => $loaded){
+				$output .= mobile_cta_render_style($loaded,$item['ID'],($index+1));
+			}
+		}
+		return $output;
+	}
+
+	// private function render_structure(){
+	// 	echo "<div class ='serp-mobile-elements-section'>";
+	// 	foreach(Mobile_CTA_Frontend_Render::get_instance()->getItems() as $item){
+	// 		$static_class = "serp-button-static serp-button-collections_".$item["ID"];
+	// 		$loaded_data = $item['content']->loaded_data;
+	// 		$container = $item['content']->container;
+	// 		require("frontend/template/mobile-elements.tmpl.php");	
+	// 	}
+	// 	echo '</div>';
+	// }
+
+	public function load_mobile_ctas(){
+		$id = sanitize_text_field($_GET['id']);
+		wp_send_json_success(array(
+			"style"=>$this->print_style($id),
+			"ID"=>get_the_ID()
+			// "structure"=>$this->render_structure()
+		));
+
+		die();
+	}
+};
+
+new Mobile_CTA_AJAX_Loaders();

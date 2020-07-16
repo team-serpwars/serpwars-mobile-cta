@@ -3,8 +3,10 @@
 		function __construct(){
 			add_action( 'wp_footer', array($this,'render_mobile_elements' ));
 			add_action( 'wp_head', array($this,'render_mobile_elements_inline_style' ));
-			add_action('wp_enqueue_scripts', array($this,'enqueue_scripts'));		
+			add_action('wp_enqueue_scripts', array($this,'enqueue_scripts'));	
+			
 		}
+
 		public function render_mobile_elements_inline_style(){
 
 			global $post;
@@ -81,6 +83,22 @@
 .ca_button_content.text_only-elements {
     padding: 10px 5px;
 }
+.serp-button-collections-wrap a {
+    text-decoration: none!important;
+}
+
+.mcta-spinner-wrap {
+    position: fixed;
+    bottom: 0;
+    z-index: 9;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.mcta-spinner-wrap .fas {
+    color: #ccc;
+}
 			</style>
 			<?php
 
@@ -153,7 +171,9 @@
 		}
 		public function enqueue_scripts(){
 			wp_enqueue_style('font-awesome-5', SERPWARS_MOBILE_ELEMENTS_URI . 'assets/css/font-awesome.min.css');	
-			wp_enqueue_script( "frontend",SERPWARS_MOBILE_ELEMENTS_URI. '/assets/js/frontend.js', array(), microtime(), true );		
+			wp_enqueue_script( "frontend",SERPWARS_MOBILE_ELEMENTS_URI. '/assets/js/frontend.js', array(), microtime(), true );	
+			wp_localize_script( 'frontend', 'my_ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ,"id"=>get_the_ID()) );	
 		}
 	
 		function load_item($id){			;
