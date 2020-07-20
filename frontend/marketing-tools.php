@@ -112,62 +112,62 @@
 			echo "}";
 
 			$loaded_data = FrontendHelper::filterElements($loaded_data,$post_ID);
+			
+			// foreach ($loaded_data as $index=>$el) {
 
-			foreach ($loaded_data as $index=>$el) {
+			// 		$i=$index+1;
+			// 		echo "\n/* asd asd Print style ".$i."*/\n";
+			// 			echo "\n.serp-button-collections>ul>div>li:nth-child(".$i."){";
+			// 			echo "background-color: ".$el->style->main->background.";";
+			// 			echo "width: ".$el->style->main->width->size.$el->style->main->width->unit.";";
 
-					$i=$index+1;
-					echo "\n/* asd asd Print style ".$i."*/\n";
-						echo "\n.serp-button-collections>ul>div>li:nth-child(".$i."){";
-						echo "background-color: ".$el->style->main->background.";";
-						echo "width: ".$el->style->main->width->size.$el->style->main->width->unit.";";
+			// 			echo "height: ".$el->style->main->height->size.$el->style->main->height->unit.";";
 
-						echo "height: ".$el->style->main->height->size.$el->style->main->height->unit.";";
+			// 			if($el->style->border->enable){
+			// 				$border_string = $el->style->border->size."px ".$el->style->border->style." ".$el->style->border->color.";";
+			// 				echo ($el->style->sides->top) ? "border-top: ".$border_string : "none;";
+			// 				echo ($el->style->sides->right) ? "border-right: ".$border_string : "none;";
+			// 				echo ($el->style->sides->bottom) ? "border-bottom: ".$border_string : "none;";
+			// 				echo ($el->style->sides->left) ? "border-left: ".$border_string : "none;";
+			// 			}
 
-						if($el->style->border->enable){
-							$border_string = $el->style->border->size."px ".$el->style->border->style." ".$el->style->border->color.";";
-							echo ($el->style->sides->top) ? "border-top: ".$border_string : "none;";
-							echo ($el->style->sides->right) ? "border-right: ".$border_string : "none;";
-							echo ($el->style->sides->bottom) ? "border-bottom: ".$border_string : "none;";
-							echo ($el->style->sides->left) ? "border-left: ".$border_string : "none;";
-						}
+			// 			if($el->style->border_radius->enable){
+			// 				echo "border-top-left-radius: ".$el->style->border_radius->top_left."px;";
+			// 				echo "border-top-right-radius: ".$el->style->border_radius->top_right."px;";
+			// 				echo "border-bottom-left-radius: ".$el->style->border_radius->bottom_left."px;";
+			// 				echo "border-bottom-right-radius: ".$el->style->border_radius->bottom_right."px;";
+			// 			}
 
-						if($el->style->border_radius->enable){
-							echo "border-top-left-radius: ".$el->style->border_radius->top_left."px;";
-							echo "border-top-right-radius: ".$el->style->border_radius->top_right."px;";
-							echo "border-bottom-left-radius: ".$el->style->border_radius->bottom_left."px;";
-							echo "border-bottom-right-radius: ".$el->style->border_radius->bottom_right."px;";
-						}
-
-					echo "margin-top:". $el->style->main->margin->top."px;";
-					echo "margin-left:". $el->style->main->margin->left."px;";
-					echo "margin-bottom:". $el->style->main->margin->bottom."px;";
-					echo "margin-right:". $el->style->main->margin->right."px;";
+			// 		echo "margin-top:". $el->style->main->margin->top."px;";
+			// 		echo "margin-left:". $el->style->main->margin->left."px;";
+			// 		echo "margin-bottom:". $el->style->main->margin->bottom."px;";
+			// 		echo "margin-right:". $el->style->main->margin->right."px;";
 
 
-					echo "}";
-					echo ".serp-button-collections>ul>div>li:nth-child(".$i.") .ca_icon{";
-						echo "color: ".$el->style->icon->color.";";
-						echo "font-size: ".$el->style->icon->size.$el->style->icon->unit.";";
-					echo "}";
-					echo ".serp-button-collections>ul>div>li:nth-child(".$i.") .ca_btn_text{";
-						echo "color: ".$el->style->text->color.";";
-						echo "font-size: ".$el->style->text->size.$el->style->text->unit.";";
-					echo "}\n";
+			// 		echo "}";
+			// 		echo ".serp-button-collections>ul>div>li:nth-child(".$i.") .ca_icon{";
+			// 			echo "color: ".$el->style->icon->color.";";
+			// 			echo "font-size: ".$el->style->icon->size.$el->style->icon->unit.";";
+			// 		echo "}";
+			// 		echo ".serp-button-collections>ul>div>li:nth-child(".$i.") .ca_btn_text{";
+			// 			echo "color: ".$el->style->text->color.";";
+			// 			echo "font-size: ".$el->style->text->size.$el->style->text->unit.";";
+			// 		echo "}\n";
 				
-			}
+			// }
 			echo "</style>";
 		}
 		public function render_mobile_elements(){
-			global $post;
-			$post_ID = $post->ID;
-			$component_data = get_post_meta($post_ID,"ca_ma_selected_components",true);
-			$component_data = json_decode($component_data);
-			$test_string = CA_Mobile_Element::get_item($component_data[0]->id);
-			$parse_data = json_decode($test_string->content);
-			$loaded_data = $parse_data->loaded_data;
-			$container = $parse_data->container;
-			$static_class = "";
-			require_once("template/mobile-elements.tmpl.php");
+			// global $post;
+			// $post_ID = $post->ID;
+			// $component_data = get_post_meta($post_ID,"ca_ma_selected_components",true);
+			// $component_data = json_decode($component_data);
+			// $test_string = CA_Mobile_Element::get_item($component_data[0]->id);
+			// $parse_data = json_decode($test_string->content);
+			// $loaded_data = $parse_data->loaded_data;
+			// $container = $parse_data->container;
+			// $static_class = "";
+			// require_once("template/mobile-elements.tmpl.php");
 		}
 		public function enqueue_scripts(){
 			wp_enqueue_style('font-awesome-5', SERPWARS_MOBILE_ELEMENTS_URI . 'assets/css/font-awesome.min.css');	
