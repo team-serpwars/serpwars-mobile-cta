@@ -84,7 +84,7 @@ function mobile_cta_render_style($el,$parent_index,$index){
 
 	$width = ($el->style->main->adjust_width==true) ? $el->style->main->width->size.$el->style->main->width->unit : "auto";
 	$height = ($el->style->main->adjust_height=="true") ? $el->style->main->height->size.$el->style->main->height->unit : "auto";
-	$output .= "/** Marking Adjust Width = ".$el->style->main->adjust_width."**/";
+	$output .= "/** Marking Adjust Width = ".$el->style->main->adjust_height."**/";
 	$style = array(
 		array(
 		"el" => ".serp-button-static.serp-button-collections.serp-button-collections_".$parent_index.">ul>div>li:nth-child(".$index.")",
@@ -100,7 +100,7 @@ function mobile_cta_render_style($el,$parent_index,$index){
 					"property"=>"width",
 					"value"=>$el->style->main->width->size,
 					"unit"=>$el->style->main->width->unit,
-					'condition' => ($el->style->main->adjust_width==true),
+					'condition' => true,
 				),
 				array(
 					"property"=>"height",
@@ -326,6 +326,7 @@ function mobile_cta_render_structure(){
 		$static_class = "serp-button-static serp-button-collections_".$item["ID"];
 		$loaded_data = $item['content']->loaded_data;
 		$container = $item['content']->container;
+		print_r($item["ID"]);
 		require("frontend/template/mobile-elements.tmpl.php");	
 	}
 	echo '</div>';

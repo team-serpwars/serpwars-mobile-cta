@@ -4,8 +4,10 @@ class NB_Mobile_Elements_Admin{
 		add_action( 'add_meta_boxes', array($this,'create_metaboxes' ));
 		add_action( 'admin_enqueue_scripts', array($this,'load_assets') );	
 		add_action( 'wp_ajax_load_item',array($this, 'load_element_item' ));
+		add_action( 'wp_ajax_nopriv_load_item',array($this, 'load_element_item' ));
 		add_action( 'wp_ajax_ca_saveitem',array($this, 'save_item' ));
 		add_action( 'wp_ajax_save_item',array($this, 'save_item' ));
+		add_action( 'wp_ajax_nopriv_save_item',array($this, 'save_item' ));
 		
 		add_action( 'wp_ajax_ca_clone_item',array($this, 'clone_item' ));
 		add_action( 'wp_ajax_ca_removeitem',array($this, 'remove_item' ));
@@ -179,7 +181,7 @@ unset($post_types ["attachment"]);
 
 		$item = CA_Mobile_Element::get_item($item_id)->display_pages;
 
-		$item = ($item!="") ? $item : '{"display_options":"all","pages":[]}';
+		$item = ($item!="") ? $item : '{"display_on":"all","pages":[]}';
 
 		$item = json_decode($item);
 		$item->display_options = $display_options;
