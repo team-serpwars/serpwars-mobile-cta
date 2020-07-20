@@ -29,7 +29,7 @@ class SERPWARS_Mobile_Elements_Admin{
 
 			$id = (isset($_GET["id"])) ?  sanitize_text_field($_GET["id"]) : 0;
 			wp_enqueue_script( "serp-vendor-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/chunk-vendors.71337edb.js', array(), "1.0.5", true );
-			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.084a4c55.js', array(), microtime(), true );
+			wp_enqueue_script( "serp-app-new-js", SERPWARS_MOBILE_ELEMENTS_ASSETS . '/js/app.0ac358f9.js', array(), microtime(), true );
 			wp_localize_script( "serp-app-new-js",'env', "live" );
 			$appvar = array("id"=>$id) ;
 			wp_localize_script( "serp-app-new-js",'appvar', $appvar );
