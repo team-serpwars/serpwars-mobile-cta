@@ -329,7 +329,8 @@ dashicons-admin-page"></span></a></td>
 							</td>
 							<td style="text-align:center;">
 								<?php 
-									$display_on = (property_exists(json_decode($item->display_pages), 'display_on')) ? json_decode($item->display_pages)->display_on : "all";									
+
+									$display_on = (property_exists(json_decode($item->display_pages), 'display_options')) ? json_decode($item->display_pages)->display_options : "all";									
 								?>
 							<div style="display:flex;">
 								<div style="width:70%">

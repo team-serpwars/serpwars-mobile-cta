@@ -326,7 +326,6 @@ function mobile_cta_render_structure(){
 		$static_class = "serp-button-static serp-button-collections_".$item["ID"];
 		$loaded_data = $item['content']->loaded_data;
 		$container = $item['content']->container;
-		print_r($item["ID"]);
 		require("frontend/template/mobile-elements.tmpl.php");	
 	}
 	echo '</div>';

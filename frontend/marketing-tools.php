@@ -112,7 +112,7 @@
 			echo "}";
 
 			$loaded_data = FrontendHelper::filterElements($loaded_data,$post_ID);
-			
+
 			// foreach ($loaded_data as $index=>$el) {
 
 			// 		$i=$index+1;
