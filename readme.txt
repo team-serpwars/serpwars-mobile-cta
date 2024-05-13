@@ -1,6 +1,6 @@
 === Serpwars Mobile CTA ===
 Contributors: serpwars 
-Donate link: https://example.com/
+Donate link: https://serpwars.com/
 Tags: serpwars, mobile, cta
 Requires at least: 5.0
 Tested up to: 5.3.2
