@@ -13,7 +13,9 @@ CONVERT MORE WEBSITE VISITORS INTO NEW CUSTOMERS
 
 == Description ==
 
-Drive more Phone Calls and Conversions from your WordPress Website in under 60 Seconds. Use WP Conversion Bar to setup effective Mobile CTAs – for free.
+Welcome to SERPWARS, where we focus on simple and effective solutions for your marketing needs. Our WordPress plugin helps you manage your marketing campaigns more efficiently. It’s easy to use, integrates smoothly with your existing setup, and supports your efforts to improve engagement and conversions. Working with the SERPWARS growth marketing agency team, you gain access to tools that help you streamline your marketing processes, allowing you to focus on growing your business.
+
+Need additional support? Reach out to SERPWARS with any questions regarding setup, customization, or usage of our tools. We are here to help ensure that your experience is smooth and beneficial. Contact us anytime; our team is committed to providing you with the answers and assistance you need.
 
 == Installation ==
 
